@@ -1,0 +1,6 @@
+<%- model_class = HospitalPerforma -%>
+<div class="page-header">
+  <h4>Hospital : <%= @hospital_performa.try(:hospital).try(:hospital_name) || "Not Entered" %></h4>
+  <h5>Performance Period : <%= @hospital_performa.try(:month).try(:month_name) || "Not Entered" %>, <%= @hospital_performa.try(:year) || "Not Entered" %></h5>
+</div>
+<%= render :partial => 'form' %>

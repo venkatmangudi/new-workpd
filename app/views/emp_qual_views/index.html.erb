@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="//cdn.oesmith.co.uk/morris-0.4.1.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+
+
+<h1>Doctors by Qualification</h1>
+<br><br>
+
+<div class="row">
+<div class="span4">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+	<th>Qualification Name</th>	
+	<th>Number of Employees</th>
+    </tr>
+  </thead>
+<tbody id="emp_qual_views">
+<% @emp_qual_views.each do |emp_qual_view| %>
+  <tr>
+	<td><%= emp_qual_view.qualification_name %></td>
+	<td><%= emp_qual_view.number_of_employees %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+	<div class="span8">
+		<%= content_tag :div, "", id: "qual_chart" %>
+	</div>
+
+</div>
+
+<script>
+var data = [];
+ 
+$('tbody#emp_qual_views tr').each(function(){
+  var row = {
+    value: parseInt($(this).children('td:last').text()),
+    label: $(this).children('td:first').text()
+  };
+ 
+  data.push(row);
+});
+ 
+
+Morris.Donut({
+  element: 'qual_chart',
+  data: data
+});
+ 
+</script>
+

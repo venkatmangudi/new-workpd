@@ -1,0 +1,88 @@
+<link rel="stylesheet" href="//cdn.oesmith.co.uk/morris-0.4.1.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+ 
+ 
+<h1>Doctors by Specialisations</h1>
+<br><br>
+ 
+ 
+<div class="row">
+<div class="span4">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+        <th>Specialization</th>
+        <th>Number of Employees</th>
+    </tr>
+  </thead>
+<tbody id="emp_spec_views">
+<% @emp_spec_views.each do |emp_spec_view| %>
+  <tr>
+        <td><%= emp_spec_view.specialization_name %></td>
+        <td><%= emp_spec_view.number_of_employees %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+    <div class="span8">
+		<%= content_tag :div, "", id: "genders_chart" %>
+	<%= content_tag :div, "", id: "genders_chart2" %>
+    </div>
+</div>
+	</div>
+</div>
+<script>
+var data = [];
+ 
+$('tbody#emp_spec_views tr').each(function(){
+  var row = {
+    value: parseInt($(this).children('td:last').text()),
+    label: $(this).children('td:first').text()
+  };
+ 
+  data.push(row);
+});
+ 
+
+Morris.Donut({
+  element: 'genders_chart',
+  data: data
+});
+ 
+</script>
+
+<script>
+var data2 = [];
+ 
+$('tbody#emp_spec_views tr').each(function(){
+  var row = {
+    number_of_employees: parseInt($(this).children('td:last').text()),
+    specialization_name: $(this).children('td:first').text()
+  };
+ 
+  data2.push(row);
+});
+ 
+
+Morris.Bar({
+  element: 'genders_chart2',
+  data: data2,
+  xkey: 'specialization_name',
+  ykeys: ['number_of_employees'],
+  labels: ['Number Of Employees'],
+  hideHover: 'true',
+  barColors: function (row, series, type) {
+    if (type === 'bar') {
+      var blue = Math.floor(255 * row.y / this.ymax);
+      return 'rgb(' + blue + ',0,0)';
+    }
+    else {
+      return '#000';
+    }
+  }
+});
+ 
+</script>

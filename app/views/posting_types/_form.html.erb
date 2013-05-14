@@ -1,0 +1,9 @@
+<%= semantic_form_for @posting_type do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :posting_type_name %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>

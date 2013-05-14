@@ -1,0 +1,12 @@
+<%= simple_form_for @additional_charge, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.association :employee,label_method: :emp_full_name, value_method: :id, include_blank: false%>
+  <%= f.association :location,label_method: :location_name, value_method: :id, include_blank: false%>  
+  <%= f.association :designation,label_method: :Designation_English, value_method: :id, include_blank: false %>
+  <%= f.input :from_date,as: :string %>
+  <%= f.input :to_date,as: :string %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                additional_charges_path, :class => 'btn' %>
+  </div>
+<% end %>

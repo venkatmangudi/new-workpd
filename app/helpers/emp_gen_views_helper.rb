@@ -1,0 +1,2 @@
+module EmpGenViewsHelper
+end

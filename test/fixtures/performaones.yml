@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  employee_id: 1
+  leave_taken: 1
+  patients_opd: 1
+  patients_admit: 1
+  patients_ref: 1
+  emer_calls: 1
+  emer_duty: 1
+  mlc_perf: 1
+  postmor_perf: 1
+  court_presence: 1
+  op_major: 1
+  op_minor: 1
+  op_caesarion: 1
+  lab_tests: 1
+  image_tests: 1
+  equip: 1
+  equipdetail: 1
+  equipdefic: 1
+
+two:
+  employee_id: 1
+  leave_taken: 1
+  patients_opd: 1
+  patients_admit: 1
+  patients_ref: 1
+  emer_calls: 1
+  emer_duty: 1
+  mlc_perf: 1
+  postmor_perf: 1
+  court_presence: 1
+  op_major: 1
+  op_minor: 1
+  op_caesarion: 1
+  lab_tests: 1
+  image_tests: 1
+  equip: 1
+  equipdetail: 1
+  equipdefic: 1

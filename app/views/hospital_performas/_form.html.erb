@@ -1,0 +1,78 @@
+<%= simple_form_for @hospital_performa, :html => { :class => 'form-horizontal' } do |f| %>
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+    
+    
+  </thead>
+  <tbody>
+    <tr>
+        <td><%= f.association :month,label_method: :month_name, value_method: :id, include_blank: false, :selected => 4%>
+          </td>
+        <td><%= f.input :year, collection: 1960..2050,include_blank: false, :selected => 2013 %> 
+
+       <%= f.association :hospital,label_method: :hospital_name, value_method: :id, include_blank: false, :as => :hidden%>
+      <td><%= f.association :hospital,label_method: :hospital_name, value_method: :id,include_blank: false, disabled: true %></td>
+        </tr>
+    
+
+
+
+  <tr>
+      
+      <td><%= f.input :outdoor , label: ' Outdoor' %></td>
+      <td><%= f.input :indoor , label: ' Indoor' %></td>
+      <td><%= f.input :minor_surgery , label: ' Minor Surgeries' %></td>
+  </tr>
+  <tr>
+    
+      <td><%= f.input :major_surgery , label: ' Major Surgeries'%></td>
+      <td><%= f.input :normal_delivery , label: ' Normal Delivery'%></td>
+      <td><%= f.input :caesarion_delivery , label: ' Caesarian Delivery'%></td>
+  </tr>
+  <tr>
+
+      
+      <td><%= f.input :pathology , label: 'Pathology'%></td>
+       <td><%= f.input :image_scans , label: ' X-Ray / Digital X-Ray / Dental X-Ray'%></td>
+      <td><%= f.input :ultra_sound , label: ' Ultra-Sound'%></td>
+  </tr>
+  <tr>
+
+     
+      <td><%= f.input :ctmri , label: ' CT Scan / MRI'%></td>
+      <td><%= f.input :ecg , label: ' ECG'%></td>
+      <td><%= f.input :ecotmt , label: ' ECO / TMT'%></td>
+     
+  </tr>
+  <tr>
+       <td><%= f.input :blood_unit_transfused , label: ' Blood Units Transfused'%></td>
+      <td><%= f.input :hemo , label: ' Hemo-Dialysis'%></td>
+      <td><%= f.input :mlc , label: ' MLC' %></td>
+  </tr>
+  <tr>
+
+      
+      <td><%= f.input :post_mortem , label: ' Postmortem'%></td>
+      <td><%= f.input :remarks , label: 'Remarks' , input_html: {style: 'height:80px;'}%></td>
+      <td></td>
+  </tr>
+  </tbody>
+</table>                                 
+  <div class="form-actions">
+    <%= f.submit "Submit", :name => nil, :class => "btn-primary" %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                hospital_performas_path, :class => 'btn' %>
+  </div>
+<% end %>

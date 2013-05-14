@@ -1,0 +1,36 @@
+<%- model_class = EmployeeCadre -%>
+<div class="page-header">
+	<h1>Employee Cadre</h1>
+</div>
+<table class="table table-bordered" id="empcadre">
+  <thead>
+    <tr>
+      <th>Employee Cadre Type</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employee_cadres.each do |employee_cadre| %>
+      <tr>
+        <td><%= employee_cadre.employee_cadre_type %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_employee_cadre_path(employee_cadre), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_employee_cadre_path,
+            :class => 'btn' %>
+
+<script>
+    $(document).ready(function() {
+      $('#empcadre').dataTable( {
+        "sPaginationType": "bootstrap"
+      } );
+    }
+  );
+</script>

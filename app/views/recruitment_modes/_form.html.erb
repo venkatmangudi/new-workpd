@@ -1,0 +1,10 @@
+<%= simple_form_for @recruitment_mode, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :recruitment_mode %>
+  <%= f.input :created_datetime %>
+  <%= f.input :created_userid %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                recruitment_modes_path, :class => 'btn' %>
+  </div>
+<% end %>

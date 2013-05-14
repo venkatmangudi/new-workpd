@@ -1,0 +1,35 @@
+<%- model_class = MartialStat -%>
+<div class="page-header">
+  <h1>Marital Status</h1>
+</div>
+<table class="table table-bordered" id="martial_stats">
+  <thead>
+    <tr>
+      <th>Marital Status Type</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @martial_stats.each do |martial_stat| %>
+      <tr>
+        <td><%= martial_stat.martial_status_type %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_martial_stat_path(martial_stat), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_martial_stat_path,
+            :class => 'btn' %>
+<script>
+    $(document).ready(function() {
+      $('#martial_stats').dataTable( {
+        "sPaginationType": "bootstrap"
+      } );
+    }
+  );
+</script>

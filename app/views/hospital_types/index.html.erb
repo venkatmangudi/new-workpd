@@ -1,0 +1,34 @@
+<%- model_class = HospitalType -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:hospital_type) %></th>
+      <th><%= model_class.human_attribute_name(:remarks) %></th>
+      <th><%= model_class.human_attribute_name(:created_datetime) %></th>
+      <th><%= model_class.human_attribute_name(:updated_datetime) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @hospital_types.each do |hospital_type| %>
+      <tr>
+        <td><%= link_to hospital_type.id, hospital_type_path(hospital_type) %></td>
+        <td><%= hospital_type.hospital_type %></td>
+        <td><%= hospital_type.remarks %></td>
+        <td><%= hospital_type.created_datetime %></td>
+        <td><%= hospital_type.updated_datetime %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                     edit_hospital_type_path(hospital_type), :class => 'btn btn-mini' %>
+	</td>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_hospital_type_path,
+            :class => 'btn' %>

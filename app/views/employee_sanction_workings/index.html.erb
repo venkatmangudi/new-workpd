@@ -1,0 +1,52 @@
+<%- model_class = EmployeeSanctionWorking -%>
+
+<div class="page-header">
+  <h1><%= @employee_sanction_workings.try(:first).try(:hospital_name) || "Not Entered" %> - Employee List</h1><br>
+  <%= link_to "Add Hospital Performance Data", new_hospital_performa_url(:id => @employee_sanction_workings.try(:first).try(:hospital_id))  , :class => 'btn btn-small btn-success'%>
+  <%= link_to "View Hospital Performance Data", hospital_performas_path(:hospital_id=> @employee_sanction_workings.try(:first).try(:hospital_id)) , :class => 'btn btn-small btn-success'%>
+  <%= link_to "View Doctors Performance Data", performaones_path(:hospital_id=> @employee_sanction_workings.try(:first).try(:hospital_id)) , :class => 'btn btn-small btn-success'%><br><br>
+</div>
+<table class="table table-bordered" id="empworksac1">
+  <thead>
+    <tr>
+      
+      <th>Employee Name</th>
+      <th>Designation (English)</th>
+      <th>Designation (Hindi)</th>
+      <th>Working Status</th>
+      <!-- <th>Wrong Data ?</th> -->
+      <th>Add Data</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employee_sanction_workings.each do |empsancwork| %>
+      <tr>
+          
+          <td><%= empsancwork.emp_full_name %></td>
+          <td><%= empsancwork.Designation_English%></td>
+          <td><%= empsancwork.Designation_hindi%></td>
+          <td><%= empsancwork.status_name%></td>
+          <!-- <td><%= check_box_tag "empsancwork_employee_ids[]", empsancwork.employee_id %></td> -->
+          <!-- <td><%= check_box_tag "empsancwork_employee_ids[]", empsancwork.employee_id %></td> -->
+          <td><%= link_to t('.new', :default => t("helpers.links.new")),
+            new_performaone_url(:id => empsancwork.employee_id, :hospital_id => empsancwork.hospital_id),
+            :class => 'btn btn-mini btn-success',:id => 'addnew' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table><br><br>
+<!-- <a type="button" class="btn" style="width:25%;">Add Data for Selected Employees</a> -->
+<!-- <a type="button" class="btn" style="width:25%;">Invalidate Selected Employees</a> -->
+
+<script>
+  $('#addnew span').text('Add Monthly Doctor Performance Data');
+</script>
+
+<script>
+    $(document).ready(function() {
+      $('#empworksac1').dataTable( {
+        "sPaginationType": "bootstrap"
+      } );
+    }
+  );
+</script>

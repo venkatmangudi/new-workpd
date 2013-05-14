@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="//cdn.oesmith.co.uk/morris-0.4.1.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+
+<h1>Hospital Vacant By Band</h1>
+
+<br><br>
+<div class="row">
+<div class="span4">
+
+<%= search_form_for @q do |f| %>
+  
+  <%= f.label :specialisation_cont , "Specialisation"%>
+  <%= f.select :specialisation_id_eq, options_from_collection_for_select(GraphHospitalVacant.all, "id", "Specialisation_name", @q.specialisation_id_eq) %>
+
+
+<div class="form-actions">
+<%= f.submit "Search", :name => nil, :class => "btn" %>
+  </div>
+
+
+<% end %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+        <th>Specialisation</th>
+        <th>Hospital Band</th>
+        <th>No.</th>
+    </tr>
+  </thead>
+<tbody id="graph_hospital_vacant_by_bands">
+<% @graph_hospital_vacant_by_bands.each do |graph_hospital_vacant_by_band| %>
+  <tr>
+	     <td><%= graph_hospital_vacant_by_band.specialisation.Specialisation_name %></td>
+	     <td><%= graph_hospital_vacant_by_band.hospitalband %></td>
+	     <td><%= graph_hospital_vacant_by_band.nos %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+    <div class="span8">
+                <%= content_tag :div, "", id: "hosp_chart" %>
+        </div>
+</div>
+<script>
+var data = [];
+ 
+$('tbody#graph_hospital_vacant_by_bands tr').each(function(){
+  var row = {
+    value: parseInt($(this).children('td:last').text()),
+    label: $(this).children('td:nth-child(2)').text()
+  };
+ 
+  data.push(row);
+});
+ 
+
+Morris.Donut({
+  element: 'hosp_chart',
+  data: data
+});
+ 
+</script>

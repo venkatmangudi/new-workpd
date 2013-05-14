@@ -1,0 +1,44 @@
+<%- model_class = AdditionalCharge -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-bordered" id="addlcharge">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:employee_name) %></th>
+      <th><%= model_class.human_attribute_name(:location) %></th>
+      <th><%= model_class.human_attribute_name(:designation) %></th>
+      <th>From Date</th>
+      <th>To Date</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @additional_charges.each do |additional_charge| %>
+      <tr>
+        <td><%= additional_charge.employee.emp_full_name %></td>
+        <td><%= additional_charge.location.location_name %></td>
+        <td><%= additional_charge.designation.Designation_English %></td>
+	<td><%= additional_charge.from_date %></td>
+	<td><%= additional_charge.to_date %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_additional_charge_path(additional_charge), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_additional_charge_path,
+            :class => 'btn' %>
+
+<script>
+    $(document).ready(function() {
+      $('#addlcharge').dataTable( {
+        "sPaginationType": "bootstrap"
+      } );
+    }
+  );
+</script>

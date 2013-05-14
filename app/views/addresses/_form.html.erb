@@ -1,0 +1,28 @@
+<%= simple_form_for @address, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.association :employee,label_method: :emp_full_name, value_method: :id, include_blank: false, :as => :hidden%>
+  <%= f.association :employee,label_method: :emp_full_name, value_method: :id, include_blank: false, disabled: true%>
+  <%= f.input :address1 %>
+  <%= f.input :address2 %>
+  <%= f.input :address3 %>
+  <%= f.input :city %>
+  <%= f.input :postalcode %>
+  <%= f.input :postoffice %>
+  <%= f.input :state_id %>
+  <%= f.input :validsince %>
+  <%= f.input :homephone %>
+  <%= f.input :mobilephone %>
+  <%= f.input :emailid %>
+  <%= f.input :perm_address1 %>
+  <%= f.input :perm_address2 %>
+  <%= f.input :perm_address3 %>
+  <%= f.input :perm_city %>
+  <%= f.input :perm_postalcode %>
+  <%= f.input :perm_postoffice %>
+  <%= f.input :perm_state_id %>
+  <%= f.input :perm_homephone %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                employee_path(@address.employee_id), :class => 'btn' %>
+  </div>
+<% end %>

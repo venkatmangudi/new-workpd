@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="//cdn.oesmith.co.uk/morris-0.4.1.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+
+
+<h1>Employee Tenure by Band</h1>
+<br><br>
+
+
+<div class="row">
+<div class="span4">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+        <th>Tenure (Years)</th>
+        <th>Number of Employees</th>
+    </tr>
+  </thead>
+<tbody>
+<% @emp_tenure_by_bands.each do |emp_tenure_by_band| %>
+  <tr>
+        <td><%= emp_tenure_by_band.tenure %></td>
+        <td><%= emp_tenure_by_band.number_of_employees %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+        <div class="span8">
+                <%= content_tag :div, "", id: "tenure_chart", data: {emp_tenure_by_bands: @emp_tenure_by_bands} %>
+        </div>
+</div>
+
+<script>
+Morris.Bar({
+          element: 'tenure_chart',
+          data:[{"number_of_employees":262,"tenure":"Unknown"},{"number_of_employees":443,"tenure":"11-15"},{"number_of_employees":221,"tenure":"16-20"},{"number_of_employees":412,"tenure":"2-5"},{"number_of_employees":2047,"tenure":"21 and Over"},{"number_of_employees":449,"tenure":"6-10"},{"number_of_employees":1140,"tenure":"Below 2"}],
+	  xkey: 'tenure',
+          ykeys: ['number_of_employees'],
+          labels: ['Number Of Employees'],
+          hideHover: 'true',
+  barColors: function (row, series, type) {
+    if (type === 'bar') {
+      var blue = Math.floor(255 * row.y / this.ymax);
+      return 'rgb(' + blue + ',0,0)';
+    }
+    else {
+      return '#000';
+    }
+  }
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

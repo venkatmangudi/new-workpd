@@ -1,0 +1,63 @@
+<%- model_class = EmployeeSanctionWorking -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:employee_cadre_id) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.employee_cadre_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:employee_id) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.employee_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:emp_full_name) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.emp_full_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:gender_name) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.gender_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:join_date) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.join_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:employee_class) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.employee_class %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:qualification_name_id) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.qualification_name_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:qualification_name) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.qualification_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:specialisation_id) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.specialisation_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:specialisation_name) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.specialisation_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:designation_id) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.designation_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:Designation_English) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.Designation_English %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:Designation_hindi) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.Designation_hindi %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:employment_type_id) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.employment_type_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:employment_type) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.employment_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:status_id) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.status_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:status_name) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.status_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:district_id) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.district_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:district_name) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.district_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:hospital_id) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.hospital_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:hospital_name) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.hospital_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:sanctioned_posts) %>:</strong></dt>
+  <dd><%= @employee_sanction_working.sanctioned_posts %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              employee_sanction_workings_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_employee_sanction_working_path(@employee_sanction_working), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              employee_sanction_working_path(@employee_sanction_working),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

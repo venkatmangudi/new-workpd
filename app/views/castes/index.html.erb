@@ -1,0 +1,36 @@
+<%- model_class = Caste -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-bordered" id="castes">
+  <thead>
+    <tr>
+      <th>Caste Name</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @castes.each do |caste| %>
+      <tr>
+        <td><%= caste.caste_name %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_caste_path(caste), :class => 'btn btn-mini' %>
+	</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_caste_path,
+            :class => 'btn' %>
+
+<script>
+    $(document).ready(function() {
+      $('#castes').dataTable( {
+        "sPaginationType": "bootstrap"
+      } );
+    }
+  );
+</script>

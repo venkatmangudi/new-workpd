@@ -1,0 +1,2 @@
+module RecruitmentModesHelper
+end

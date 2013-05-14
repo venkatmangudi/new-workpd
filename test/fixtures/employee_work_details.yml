@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  employee_id: 1
+  status_id: 1
+  designation_id: 1
+  employee_class: 1
+  join_date: 2013-02-14
+  pub_svc_comm_no: MyString
+  pub_svc_comm_year: 1
+  recruitment_mode_id: 1
+  medical_registration_number: MyString
+  medical_registration_date: 2013-02-14
+  superannuation_date: 2013-02-14
+
+two:
+  employee_id: 1
+  status_id: 1
+  designation_id: 1
+  employee_class: 1
+  join_date: 2013-02-14
+  pub_svc_comm_no: MyString
+  pub_svc_comm_year: 1
+  recruitment_mode_id: 1
+  medical_registration_number: MyString
+  medical_registration_date: 2013-02-14
+  superannuation_date: 2013-02-14

@@ -1,0 +1,60 @@
+<%- model_class = Hospital -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+
+<p>
+  Download:
+  <%= link_to "PDF", hospitals_path(format: "pdf") %> |
+  <%= link_to "CSV", hospitals_path(format: "csv") %> |
+  <%= link_to "Excel", hospitals_path(format: "xls") %>
+</p>
+
+<table class="table table-bordered" id="hosp">
+  <thead>
+    <tr>   
+      <th><%= model_class.human_attribute_name(:hospital_name) %></th>
+      <th><%= model_class.human_attribute_name(:beds) %></th>
+      <th><%= model_class.human_attribute_name(:block_id) %></th>
+      <th><%= model_class.human_attribute_name(:hospital_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:institution_type_id) %></th>
+      <th>Admin Location ?</th>
+      <th>Tribal Location ?</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th><%= model_class.human_attribute_name(:phone_no) %></th>
+      <th><%= model_class.human_attribute_name(:fax_no) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @hospitals.each do |hospital| %>
+      <tr> 
+        <td><%= link_to hospital.hospital_name,hospital_path(hospital) %></td>
+        <td><%= hospital.beds %></td>
+        <td><%= hospital.block.block_name %></td>
+        <td><%= hospital.hospital_type.hospital_type %></td>
+        <td><%= hospital.institution_type.Institution_type %></td>
+        <td><%= hospital.IsAdministrativeLocation? ? 'Yes' : 'No' %></td>
+        <td><%= hospital.IsTribal? ? 'Yes' : 'No' %></td>        
+	      <td><%= hospital.latitude %></td>
+        <td><%= hospital.longitude %></td>
+        <td><%= hospital.phone_no %></td>
+        <td><%= hospital.fax_no %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_hospital_path,
+            :class => 'btn' %>
+
+<script>
+    $(document).ready(function() {
+      $('#hosp').dataTable( {
+        "sPaginationType": "bootstrap"
+      } );
+    }
+  );
+</script>
+

@@ -1,0 +1,44 @@
+<table border="1">
+  <tr>
+      <th>Hospital Name</th>
+      <th>Outdoor</th>
+      <th>Indoor</th>
+      <th>Minor Surgeries</th>
+      <th>Major Surgeries</th>
+      <th>Normal Delivery</th>
+      <th>Cesarean Delivery</th>
+      <th>Pathology</th>
+      <th>X-Ray / Digital X-Ray / Dental X-Ray</th>
+      <th>Ultra Sound</th>
+      <th>CT Scan / MRI</th>
+      <th>ECG</th>
+      <th>ECO / EMT</th>
+      <th>Blood Units Transfused</th>
+      <th>Hemo-Dialysis</th>
+      <th>MLC</th>
+      <th>Postmortem</th>
+      <th>Remarks</th>
+    </tr>
+    <% @hospital_performas.each do |hospital_performa| %>
+      <tr>
+        <td><%= hospital_performa.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
+        <td><%= hospital_performa.outdoor %></td>
+        <td><%= hospital_performa.indoor %></td>
+        <td><%= hospital_performa.minor_surgery %></td>
+        <td><%= hospital_performa.major_surgery %></td>
+        <td><%= hospital_performa.normal_delivery %></td>
+        <td><%= hospital_performa.caesarion_delivery %></td>
+        <td><%= hospital_performa.pathology %></td>
+        <td><%= hospital_performa.image_scans %></td>
+        <td><%= hospital_performa.ultra_sound %></td>
+        <td><%= hospital_performa.ctmri %></td>
+        <td><%= hospital_performa.ecg %></td>
+        <td><%= hospital_performa.ecotmt %></td>
+        <td><%= hospital_performa.blood_unit_transfused %></td>
+        <td><%= hospital_performa.hemo %></td>
+        <td><%= hospital_performa.mlc %></td>
+        <td><%= hospital_performa.post_mortem %></td>
+        <td><%= hospital_performa.remarks %></td>
+      </tr>
+    <% end %>
+</table>

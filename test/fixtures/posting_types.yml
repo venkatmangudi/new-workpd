@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  posting_type_name: MyString
+
+two:
+  posting_type_name: MyString

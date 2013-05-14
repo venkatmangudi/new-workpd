@@ -1,0 +1,191 @@
+<link rel="stylesheet" href="//cdn.oesmith.co.uk/morris-0.4.1.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+
+
+<%- model_class = Hospital -%>
+<div class="page-header">
+  <h1>Hospital: <%= @hospital.hospital_name %></h1>
+</div>
+
+
+<div class="row">
+<div class="span12">
+
+
+<div class="tabbable columns">
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a id="n.1" href="#declarations1" data-toggle="tab">Hospital Detals </a></li>
+        <li class=""><a id="n.2" href="#hradetails1" data-toggle="tab">Sanctioned Details</a></li>
+	<li class=""><a id="n.3" href="#hradetails2" data-toggle="tab">Doctor Details</a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active in" id="declarations1">
+<table class="table table-bordered table-condensed">
+  <tbody>
+  	<tr>
+        <td>Hospital Name</td>
+        <td><%= @hospital.hospital_name %></td>
+    </tr>
+    	<tr>
+	  <td>Block Name</td>
+	  <td><%= @hospital.block.block_name %></td>
+	</tr>      
+	<tr>
+	  <td>Hospital Type</td>
+	  <td><%= @hospital.hospital_type.hospital_type %></td>
+	</tr>  
+	<tr>
+	  <td>Beds</td>
+	  <td><%= @hospital.beds %></td>
+	</tr> 
+	<tr>
+	  <td>Institution Type</td>
+	  <td><%= @hospital.institution_type.Institution_type %></td>
+	</tr>
+	<tr>
+	  <td>Admin Location ? </td>
+	  <td><%= @hospital.IsAdministrativeLocation? ? 'Yes' : 'No'  %></td>
+	</tr>
+	<tr>
+	  <td>Tribal Location ? </td>
+	  <td><%= @hospital.IsTribal? ? 'Yes' : 'No'  %></td>
+	</tr>
+	<tr>
+	  <td>Latitude </td>
+	  <td><%= @hospital.latitude %></td>
+	</tr>
+	<tr>
+	  <td>Longitude </td>
+	  <td><%= @hospital.longitude %></td>
+	</tr>
+	<tr>
+	  <td>Phone Number</td>
+	  <td><%= @hospital.phone_no %></td>
+	</tr>
+	<tr>
+	  <td>Fax Number</td>
+	  <td><%= @hospital.fax_no %></td>
+	</tr>
+   </tbody>
+</table>
+        </div>
+        <div class="tab-pane fade" id="hradetails1">
+<table class="table table-bordered table-condensed">
+  <tbody id="sixsanc">
+  <tr><td>Class - 1 (Sanctioned)</td>
+  <td><%= @hospital.vw_sanctioned_working_by_hospitals.first.class_1_sanctioned %></td></tr>
+  <tr><td>Class - 1 (Working)</td>
+  <td><%= @hospital.vw_sanctioned_working_by_hospitals.first.class_1_working %></td></tr>
+  <tr><td>Class - 1 (Vacant)</td>
+  <td><%= @hospital.vw_sanctioned_working_by_hospitals.first.class_1_vacant %></td></tr>
+  <tr><td>Class - 2 (Sanctioned)</td>
+  <td><%= @hospital.vw_sanctioned_working_by_hospitals.first.class_2_sanctioned %></td></tr>
+  <tr><td>Class - 2 (Working)</td>
+  <td><%= @hospital.vw_sanctioned_working_by_hospitals.first.class_2_working %></td></tr>
+  <tr><td>Class - 2 (Vacant)</td>
+  <td><%= @hospital.vw_sanctioned_working_by_hospitals.first.class_2_vacant %></td></tr>
+  </tbody>
+</table>
+
+<div class="modal fade" id="test_modal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h3>Modal HeaderA</h3>
+  </div>
+  <div class="modal-body">
+                <%= content_tag :div, "", id: "six_chart" %>
+<script>
+var data = [];
+ 
+$('tbody#sixsanc tr').each(function(){
+  var row = {
+    value: parseInt($(this).children('td:last').text()),
+    label: $(this).children('td:first').text()
+  };
+ 
+  data.push(row);
+});
+ 
+
+Morris.Donut({
+  element: 'six_chart',
+  data: data
+});
+ 
+</script>
+
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>  
+<a type="button" class="btn" style="width:10%;" href="#test_modal" data-toggle="modal">Show Graph</a>
+        </div>
+
+
+        <div class="tab-pane fade" id="hradetails2">
+<table class="table table-bordered" id="empworksac">
+  <thead>
+    <tr>
+      <th>Employee Name</th>
+      <th>Working Since</th>
+      <th>Employment Type</th>
+      <th>Employee Class</th>
+      <th>Specialisation</th>
+      <th>Qualification</th>
+      <th>Designation (English)</th>
+      <th>Designation (Hindi)</th>
+      <th>Working Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @hospital.employee_sanction_workings.each do |empsancwork| %>
+      <tr>
+          <td><%= link_to empsancwork.emp_full_name,employee_path(empsancwork.employee_id) %></td>
+          <td><%= empsancwork.try(:join_date).try(:strftime, "%d-%m-%Y") || "Not Entered" %></td>
+          <td><%= empsancwork.employment_type%></td>
+	  <td><%= empsancwork.employee_class%></td>
+          <td><%= empsancwork.specialisation_name%></td>
+          <td><%= empsancwork.qualification_name%></td>
+          <td><%= empsancwork.Designation_English%></td>
+          <td><%= empsancwork.Designation_hindi%></td>
+          <td><%= empsancwork.status_name%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<script>
+    $(document).ready(function() {
+      $('#empworksac').dataTable( {
+        "sPaginationType": "bootstrap"
+      } );
+    }
+  );
+</script>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+</div>
+<div class="span8">
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?size=600x300&sensor=false&zoom=16&markers=#{@hospital.latitude}%2C#{@hospital.longitude}",:class => "style_image"  %>
+  </div>
+</div>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              hospitals_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_hospital_path(@hospital), :class => 'btn' %>
+</div>
+<script>
+  $('.style_image').hide();
+</script>
+
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style type="text/css" media="screen">
+  body{
+    background-image:url('/assets/madhya46.png');
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-position: 50% 83%; 
+  } 
+        .form-actions{
+        background: none;
+      }
+                #mp_logo{
+            padding-left: 200px;
+            padding-right: 30px;
+            padding-top: 10px;
+
+          }
+
+          #mp_logo {
+        background-image: url("/assets/mp_logo.png");
+        background-repeat: no-repeat;
+        background-position: top left;
+        height: 155px;
+
+      }
+  </style>
+
+  </head>
+
+<body>
+  <div id="mp_logo">
+    <h3>Performance MIS</h3>
+</body>
+<h2>Sign in</h2>
+
+<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :email, :required => false, :autofocus => true %>
+    <%= f.input :password, :required => false %>
+    <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Sign in" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

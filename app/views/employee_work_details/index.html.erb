@@ -1,0 +1,58 @@
+<%- model_class = EmployeeWorkDetail -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-bordered" id="empwork">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:employee_id) %></th>
+      <th><%= model_class.human_attribute_name(:status_id) %></th>
+      <th><%= model_class.human_attribute_name(:designation_id) %></th>
+      <th><%= model_class.human_attribute_name(:employee_class) %></th>
+      <th><%= model_class.human_attribute_name(:join_date) %></th>
+      <th><%= model_class.human_attribute_name(:pub_svc_comm_no) %></th>
+      <th><%= model_class.human_attribute_name(:pub_svc_comm_year) %></th>
+      <th><%= model_class.human_attribute_name(:recruitment_mode_id) %></th>
+      <th><%= model_class.human_attribute_name(:medical_registration_number) %></th>
+      <th><%= model_class.human_attribute_name(:medical_registration_date) %></th>
+      <th><%= model_class.human_attribute_name(:superannuation_date) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employee_work_details.each do |employee_work_detail| %>
+      <tr>
+        <td><%= link_to employee_work_detail.id, employee_work_detail_path(employee_work_detail) %></td>
+        <td><%= employee_work_detail.employee_id %></td>
+        <td><%= employee_work_detail.status_id %></td>
+        <td><%= employee_work_detail.designation_id %></td>
+        <td><%= employee_work_detail.employee_class %></td>
+        <td><%= employee_work_detail.join_date %></td>
+        <td><%= employee_work_detail.pub_svc_comm_no %></td>
+        <td><%= employee_work_detail.pub_svc_comm_year %></td>
+        <td><%= employee_work_detail.recruitment_mode_id %></td>
+        <td><%= employee_work_detail.medical_registration_number %></td>
+        <td><%= employee_work_detail.medical_registration_date %></td>
+        <td><%= employee_work_detail.superannuation_date %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_employee_work_detail_path(employee_work_detail), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_employee_work_detail_path,
+            :class => 'btn btn-primary' %>
+
+<script>
+    $(document).ready(function() {
+      $('#empwork').dataTable( {
+        "sPaginationType": "bootstrap"
+      } );
+    }
+  );
+</script>

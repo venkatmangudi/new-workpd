@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="//cdn.oesmith.co.uk/morris-0.4.1.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+
+
+<h1>Hospital Vacant By Band</h1>
+<br><br>
+
+                <%= content_tag :div, "", id: "hosvac_chart", data: {graph_hospital_vacant_by_bands: @graph_hospital_vacant_by_bands} %>
+
+<div class="row">
+<div class="span4">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+        <th>Specialisations</th>
+        <th>Hospital Band</th>
+        <th>No.</th>
+    </tr>
+  </thead>
+<tbody>
+<% @graph_hospital_vacant_by_bands.each do |graph_hospital_vacant_by_band| %>
+  <tr>
+	     <td><%= graph_hospital_vacant_by_band.specialisation %></td>
+	     <td><%= graph_hospital_vacant_by_band.hospitalband %></td>
+	     <td><%= graph_hospital_vacant_by_band.nos %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+        <div class="span8">
+        </div>
+</div>
+
+<script>
+Morris.Bar({
+  element: 'hosvac_chart',
+  data: [{"hospitalband":"Civil Hospital","nos":16,"specialisation":"Anaesthesiology","specialisation_id":1},{"hospitalband":"Community Health Center","nos":69,"specialisation":"Anaesthesiology","specialisation_id":1},{"hospitalband":"District Hospital","nos":3,"specialisation":"Anaesthesiology","specialisation_id":1},{"hospitalband":"Civil Hospital","nos":28,"specialisation":"Dental","specialisation_id":10},{"hospitalband":"District Hospital","nos":14,"specialisation":"Dental","specialisation_id":10},{"hospitalband":"Civil Hospital","nos":28,"specialisation":"General Medicine","specialisation_id":16},{"hospitalband":"Community Health Center","nos":302,"specialisation":"General Medicine","specialisation_id":16},{"hospitalband":"District Hospital","nos":3,"specialisation":"General Medicine","specialisation_id":16},{"hospitalband":"Civil Hospital","nos":24,"specialisation":"General Surgery","specialisation_id":17},{"hospitalband":"Community Health Center","nos":298,"specialisation":"General Surgery","specialisation_id":17},{"hospitalband":"District Hospital","nos":3,"specialisation":"General Surgery","specialisation_id":17},{"hospitalband":"Civil Hospital","nos":17,"specialisation":"Obstetrics & Gynaecology","specialisation_id":38},{"hospitalband":"Community Health Center","nos":284,"specialisation":"Obstetrics & Gynaecology","specialisation_id":38},{"hospitalband":"District Hospital","nos":1,"specialisation":"Obstetrics & Gynaecology","specialisation_id":38},{"hospitalband":"Civil Hospital","nos":11,"specialisation":"Ophthalmology","specialisation_id":40},{"hospitalband":"District Hospital","nos":3,"specialisation":"Ophthalmology","specialisation_id":40},{"hospitalband":"Civil Hospital","nos":10,"specialisation":"Orthopaedics","specialisation_id":41},{"hospitalband":"District Hospital","nos":2,"specialisation":"Orthopaedics","specialisation_id":41},{"hospitalband":"Civil Hospital","nos":26,"specialisation":"Paediatrics","specialisation_id":43},{"hospitalband":"Community Health Center","nos":45,"specialisation":"Paediatrics","specialisation_id":43},{"hospitalband":"Civil Hospital","nos":14,"specialisation":"Pathology","specialisation_id":45},{"hospitalband":"District Hospital","nos":11,"specialisation":"Pathology","specialisation_id":45},{"hospitalband":"Civil Hospital","nos":1,"specialisation":"Radiology","specialisation_id":54},{"hospitalband":"District Hospital","nos":16,"specialisation":"Radiology","specialisation_id":54},{"hospitalband":"District Hospital","nos":35,"specialisation":"Tuberculosis and Chest Diseases","specialisation_id":62},{"hospitalband":"District Hospital","nos":8,"specialisation":"ENT","specialisation_id":67},{"hospitalband":"Civil Hospital","nos":7,"specialisation":"MBBS","specialisation_id":126},{"hospitalband":"Community Health Center","nos":29,"specialisation":"MBBS","specialisation_id":126},{"hospitalband":"Primary Health Center","nos":466,"specialisation":"MBBS","specialisation_id":126}],
+  xkey: 'specialisation',
+  ykeys: ['nos','hospitalband'],
+  labels: ['nos', 'Specialisation'],
+  barFillColors: [
+    '#aaa #555',      // from light gray to dark gray (top to bottom)
+    '#555 #aaa black' // from dark day, through light gray, to black
+  ]
+});
+</script>

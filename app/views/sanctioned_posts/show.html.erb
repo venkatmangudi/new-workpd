@@ -1,0 +1,20 @@
+<%- model_class = SanctionedPost -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>Hospital Name :</strong></dt>
+  <dd><%= @sanctioned_post.hospital.hospital_name %></dd>
+  <dt>Designation Name :</strong></dt>
+  <dd><%= @sanctioned_post.designation.Designation_English %></dd>
+  <dt>Sanctioned Posts :</strong></dt>
+  <dd><%= @sanctioned_post.sanctioned_posts %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              sanctioned_posts_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_sanctioned_post_path(@sanctioned_post), :class => 'btn' %>
+</div>

@@ -1,0 +1,80 @@
+<%- model_class = Performaone -%>
+<div class="page-header">
+  <h1>Confirm Data</h1>
+  <h4>Employee : <%= @performaone.try(:employee).try(:emp_full_name) || "Not Entered" %></h4>
+  <h4>Hospital : <%= @performaone.try(:hospital).try(:hospital_name) || "Not Entered" %></h4>
+  <h5>Performance Period : <%= @performaone.try(:month).try(:month_name) || "Not Entered" %>, <%= @performaone.try(:year) || "Not Entered" %></h5>
+</div>
+
+<table class="table table-bordered table-condensed">
+  <tbody>
+  <tr>
+    <td>Name of Doctor</td>
+    <td><%= @performaone.employee.emp_full_name %></td>
+  </tr>
+    <tr>
+    <td>Employee Treasury ID</td>
+    <td><%= @performaone.employee.emp_treasury_id %></td>
+  </tr>
+    <tr>
+    <td>Post / Specialist</td>
+    <td><%= @performaone.designation.Designation_English %></td>
+  </tr>
+  <tr>
+    <td>Leaves Taken in the Month</td>
+    <td><%= @performaone.leave_taken %></td>
+  </tr>
+  <tr>
+    <td>No. of Patients Checked In OPD in the Month</td>
+    <td><%= @performaone.patients_opd %></td>
+  </tr>
+  <tr><td>No. of Patients Admitted</td>
+  <td><%= @performaone.patients_admit %></td></tr>
+  <tr><td>No. of Patients Referred to Other Hospitals</td>
+  <td><%= @performaone.patients_ref %></td></tr>
+  <tr><td>No. of Emergency Calls Attended</td>
+  <td><%= @performaone.emer_calls %></td></tr>
+  <tr><td>No. of Emergency Duties Performed</td>
+  <td><%= @performaone.emer_duty %></td></tr>
+  <tr><td>No. of MLC Performed</td>
+  <td><%= @performaone.mlc_perf %></td></tr>
+  <tr><td>No. of Postmortem Done</td>
+  <td><%= @performaone.postmor_perf %></td></tr>
+  <tr><td>No. of Days Present in Court for Medico Legal Cases</td>
+  <td><%= @performaone.court_presence %></td></tr>
+  <tr><td>No. of Major Operations</td>
+  <td><%= @performaone.op_major %></td></tr>
+  <tr><td>No. of Minor Operations</td>
+  <td><%= @performaone.op_minor %></td></tr>
+  <tr><td>No. of Cesarean Operations</td>
+  <td><%= @performaone.op_caesarion %></td></tr>
+  <tr><td>Tests Conducted : Lab Tests</td>
+  <td><%= @performaone.lab_tests %></td></tr>
+  <tr><td>Tests Conducted : Sonography/X-Ray/CT Scan/MRI/Dental X-Ray/X-Ray</td>
+  <td><%= @performaone.image_tests %></td></tr>
+  <tr><td>Utilisation of Equipment By Self/Instruction</td>
+  <td><%= @performaone.equip %></td></tr>
+  <tr><td>Information on Available Equipment [Name And Number]</td>
+  <td><%= @performaone.equipdetail %></td></tr>
+  <tr><td>Equipment - Deficiency / Necessary Action</td>
+  <td><%= @performaone.equipdefic %></td></tr>
+   </tbody>
+</table>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              performaones_path(:hospital_id=>@performaone.hospital_id), :class => 'btn btn-success' , :id => 'submitco' %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_performaone_path(@performaone), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              performaone_path(@performaone),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' , :id => 'drc'%>                         
+  
+</div>
+
+<script>
+  $('#submitco span').text('Submit to HO');
+  $('#drc span').text('Clear Data & Restart');
+</script>

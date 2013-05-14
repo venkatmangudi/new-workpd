@@ -1,0 +1,79 @@
+<%- model_class = HospitalPerforma -%>
+<div class="page-header">
+  <h1>Confirm Data</h1>
+  <h4>Hospital : <%= @hospital_performa.try(:hospital).try(:hospital_name) || "Not Entered" %></h4>
+  <h5>Performance Period : <%= @hospital_performa.try(:month).try(:month_name) || "Not Entered" %>, <%= @hospital_performa.try(:year) || "Not Entered" %></h5>
+</div>
+
+<table class="table table-bordered table-condensed">
+  <tbody>
+  <tr><td>Outdoor</td>
+  <td><%= @hospital_performa.outdoor %></td>
+  </tr>
+  <tr><td>Indoor</td>
+  <td><%= @hospital_performa.indoor %></td>
+  </tr>
+  <tr><td>Minor Surgeries</td>
+  <td><%= @hospital_performa.minor_surgery %></td>
+  </tr>
+  <tr><td>Major Surgeries</td>
+  <td><%= @hospital_performa.major_surgery %></td>
+  </tr>
+  <tr><td>Normal Delivery</td>
+  <td><%= @hospital_performa.normal_delivery %></td>
+  </tr>
+  <tr><td>Cesarean Delivery</td>
+  <td><%= @hospital_performa.caesarion_delivery %></td>
+  </tr>
+  <tr><td>Pathology</td>
+  <td><%= @hospital_performa.pathology %></td>
+  </tr>
+  <tr><td>X-Ray / Digital X-Ray / Dental X-Ray</td>
+  <td><%= @hospital_performa.image_scans %></td>
+  </tr>
+  <tr><td>Ultra-Sound</td>
+  <td><%= @hospital_performa.ultra_sound %></td>
+  </tr>
+  <tr><td>CT Scan / MRI</td>
+  <td><%= @hospital_performa.ctmri %></td>
+  </tr>
+  <tr><td>ECG</td>
+  <td><%= @hospital_performa.ecg %></td>
+  </tr>
+  <tr><td>ECO / TMT</td>
+  <td><%= @hospital_performa.ecotmt %></td>
+  </tr>
+  <tr><td>Blood Units Transfused</td>
+  <td><%= @hospital_performa.blood_unit_transfused %></td>
+  </tr>
+  <tr><td>Hemo-Dialysis</td>
+  <td><%= @hospital_performa.hemo %></td>
+  </tr>
+  <tr><td>MLC</td>
+  <td><%= @hospital_performa.mlc %></td>
+  </tr>
+  <tr><td>Postmortem</td>
+  <td><%= @hospital_performa.post_mortem %></td>
+  </tr>
+  <tr><td><%= model_class.human_attribute_name(:remarks) %></td>
+  <td><%= @hospital_performa.remarks %></td>
+  </tr>
+   </tbody>
+</table>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              hospital_performas_path(:hospital_id=>@hospital_performa.hospital_id), :class => 'btn btn-success' , :id => 'submitco' %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_hospital_performa_path(@hospital_performa), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              hospital_performa_path(@hospital_performa),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger', :id => 'drc' %>
+</div>
+
+<script>
+  $('#submitco span').text('Submit to HO');
+  $('#drc span').text('Clear Data & Restart');
+</script>

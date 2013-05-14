@@ -1,0 +1,21 @@
+<h1>Listing graph_hospital_vacants</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @graph_hospital_vacants.each do |graph_hospital_vacant| %>
+  <tr>
+    <td><%= link_to 'Show', graph_hospital_vacant %></td>
+    <td><%= link_to 'Edit', edit_graph_hospital_vacant_path(graph_hospital_vacant) %></td>
+    <td><%= link_to 'Destroy', graph_hospital_vacant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Graph hospital vacant', new_graph_hospital_vacant_path %>

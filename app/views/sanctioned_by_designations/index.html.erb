@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="//cdn.oesmith.co.uk/morris-0.4.1.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+
+
+<h1>Sanctioned by Designation</h1>
+<br><br>
+
+
+<div class="row">
+<div class="span4">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+        <th>Designation (English)</th>
+	<th>Designation (Hindi)</th>
+        <th>Total Sanctioned</th>
+    </tr>
+  </thead>
+<tbody id="sanctioned_by_designations">
+<% @sanctioned_by_designations.each do |sanctioned_by_designation| %>
+  <tr>
+	<td><%= sanctioned_by_designation.designation_english %></td>
+	<td><%= sanctioned_by_designation.designation_hindi %></td>
+        <td><%= sanctioned_by_designation.total_sanctioned %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+        <div class="span8">
+		<%= content_tag :div, "", id: "desig_chart" %>
+        </div>
+</div>
+
+<script>
+var data = [];
+ 
+$('tbody#sanctioned_by_designations tr').each(function(){
+  var row = {
+    value: parseInt($(this).children('td:last').text()),
+    label: $(this).children('td:first').text()
+  };
+ 
+  data.push(row);
+});
+ 
+
+Morris.Donut({
+  element: 'desig_chart',
+  data: data
+});
+ 
+
+</script>

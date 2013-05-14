@@ -1,0 +1,16 @@
+<%- model_class = MartialStat -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:martial_status_type) %>:</strong></dt>
+  <dd><%= @martial_stat.martial_status_type %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              martial_stats_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_martial_stat_path(@martial_stat), :class => 'btn' %>
+</div>

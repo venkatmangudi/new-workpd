@@ -1,0 +1,73 @@
+<%- model_class = Performaone -%>
+<div class="page-header">
+  <h1>Employee Performance Data</h1>
+</div>
+
+<p>
+  Download:
+  
+  <%= link_to "XLS", performaones_path(format: "xls", :hospital_id => params[:hospital_id]) , :class => 'btn btn-small btn-success' %> 
+</p>
+<br>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      
+      <th>Name of Doctor</th>
+      <th>Employee Treasury ID</th>
+      <th>Hospital</th>
+      <th>Month</th>
+      <th>Year</th>
+      <th>Post / Specialist</th>
+      <th>Leaves Taken in the Month</th>
+      <th>No. of Patients Checked In OPD in the Month</th>
+      <th>No. of Patients Admitted</th>
+      <th>No. of Patients Referred to Other Hospitals</th>
+      <th>No. of Emergency Calls Attended</th>
+      <th>No. of Emergency Duties Performed</th>
+      <th>No. of MLC Performed</th>
+      <th>No. of Postmortem Done</th>
+      <th>No. of Days Present in Court for Medico Legal Cases</th>
+      <th>No. of Major Operations</th>
+      <th>No. of Minor Operations</th>
+      <th>No. of Cesarean Operations</th>
+      <th>Tests Conducted : Lab Tests</th>
+      <th>Tests Conducted : Sonography/X-Ray/CT Scan/MRI/Dental X-Ray/X-Ray</th>
+      <th>Utilisation of Equipment By Self/Instruction</th>
+      <th>Information on Available Equipment [Name And Number]</th>
+      <th>Equipment - Deficiency / Necessary Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @performaones.each do |performaone| %>
+      <tr>
+        <td><%= performaone.employee.emp_full_name %></td>
+        <td><%= performaone.employee.emp_treasury_id %></td>
+        <td><%= performaone.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
+        <td><%= performaone.try(:month).try(:month_name) || "Not Entered" %></td>
+        <td><%= performaone.try(:year)|| "Not Entered" %></td>
+        <td><%= performaone.try(:designation).try(:Designation_English) || "Not Entered" %></td>
+        <td><%= performaone.leave_taken %></td>
+        <td><%= performaone.patients_opd %></td>
+        <td><%= performaone.patients_admit %></td>
+        <td><%= performaone.patients_ref %></td>
+        <td><%= performaone.emer_calls %></td>
+        <td><%= performaone.emer_duty %></td>
+        <td><%= performaone.mlc_perf %></td>
+        <td><%= performaone.postmor_perf %></td>
+        <td><%= performaone.court_presence %></td>
+        <td><%= performaone.op_major %></td>
+        <td><%= performaone.op_minor %></td>
+        <td><%= performaone.op_caesarion %></td>
+        <td><%= performaone.lab_tests %></td>
+        <td><%= performaone.image_tests %></td>
+        <td><%= performaone.equip %></td>
+        <td><%= performaone.equipdetail %></td>
+        <td><%= performaone.equipdefic %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

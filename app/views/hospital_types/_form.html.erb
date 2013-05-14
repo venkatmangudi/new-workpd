@@ -1,0 +1,11 @@
+<%= simple_form_for @hospital_type, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :hospital_type %>
+  <%= f.input :remarks %>
+  <%= f.input :created_datetime %>
+  <%= f.input :updated_datetime %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                hospital_types_path, :class => 'btn' %>
+  </div>
+<% end %>

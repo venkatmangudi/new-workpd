@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="//cdn.oesmith.co.uk/morris-0.4.1.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+
+
+<h1>Employee Age by Band</h1>
+<br><br>
+
+
+<div class="row">
+<div class="span4">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+        <th>Age Band (Years)</th>
+        <th>Number of Employees</th>
+    </tr>
+  </thead>
+<tbody id="employee_age_by_bands">
+<% @employee_age_by_bands.each do |employee_age_by_band| %>
+  <tr>
+        <td><%= employee_age_by_band.ageband %></td>
+        <td><%= employee_age_by_band.number_of_employees %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+        <div class="span8">
+                <%= content_tag :div, "", id: "age_chart" %>
+        </div>
+</div>
+
+<script>
+var data = [];
+ 
+$('tbody#employee_age_by_bands tr').each(function(){
+  var row = {
+    value: parseInt($(this).children('td:last').text()),
+    label: $(this).children('td:first').text()
+  };
+ 
+  data.push(row);
+});
+ 
+
+Morris.Donut({
+  element: 'age_chart',
+  data: data
+});
+ 
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

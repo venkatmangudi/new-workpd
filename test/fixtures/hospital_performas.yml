@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  division_id: 1
+  district_id: 1
+  outdoor: 1
+  indoor: 1
+  minor_surgery: 1
+  major_surgery: 1
+  normal_delivery: 1
+  caesarion_delivery: 1
+  pathology: 
+  image_scans: 1
+  ultra_sound: 1
+  ctmri: 1
+  ecg: 1
+  ecotmt: 1
+  blood_unit_transfused: 1
+  hemo: 1
+  mlc: 1
+  post_mortem: 1
+  remarks: MyText
+
+two:
+  division_id: 1
+  district_id: 1
+  outdoor: 1
+  indoor: 1
+  minor_surgery: 1
+  major_surgery: 1
+  normal_delivery: 1
+  caesarion_delivery: 1
+  pathology: 
+  image_scans: 1
+  ultra_sound: 1
+  ctmri: 1
+  ecg: 1
+  ecotmt: 1
+  blood_unit_transfused: 1
+  hemo: 1
+  mlc: 1
+  post_mortem: 1
+  remarks: MyText

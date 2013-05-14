@@ -1,0 +1,2 @@
+module EmployeeWorkDetailsHelper
+end

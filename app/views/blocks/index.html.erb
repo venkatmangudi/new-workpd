@@ -1,0 +1,38 @@
+<%- model_class = Block -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-bordered" id="blocks">
+  <thead>
+    <tr>
+      <th>District Name</th>
+      <th>Block Name</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @blocks.each do |block| %>
+      <tr>
+        <td><%= block.district.district_name %></td>
+        <td><%= block.block_name %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_block_path(block), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_block_path,
+            :class => 'btn' %>
+
+<script>
+    $(document).ready(function() {
+      $('#blocks').dataTable( {
+        "sPaginationType": "bootstrap"
+      } );
+    }
+  );
+</script>

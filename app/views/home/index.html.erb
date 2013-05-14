@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	    <style type="text/css" media="screen">
+          #mp_logo{
+          	padding-left: 200px;
+          	padding-right: 30px;
+            padding-top: 10px;
+
+          }
+
+          #mp_logo {
+        background-image: url("/assets/mp_logo.png");
+        background-repeat: no-repeat;
+        background-position: top left;
+        height: 155px;
+
+      }
+
+      .hero-unit{
+        opacity: 1.0;
+        background: none;
+      }
+    </style>
+
+    <link rel="stylesheet" href="//cdn.oesmith.co.uk/morris-0.4.1.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+  </head>
+<body>
+
+     <div class="container">
+      <div class="hero-unit">
+              <div id="mp_logo">
+                  <h1>
+                    <strong>Performance MIS</strong><br>
+                    <small>Department of Public Health & Family Welfare</small>
+                  </h1>
+            </div>
+     </div>
+
+<!--   <%= search_form_for @q do |f| %>
+<%= f.label :hospital_id_eq , "Enter Hospital ID"%>
+  <%= f.text_field :hospital_id_eq %> 
+      <div class="form-actions">
+        <%= f.submit "Search", :name => nil, :class => "btn" %>
+    </div>
+
+
+<% end %>-->
+
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :hospital_cont , "Hospital Name"%>
+  <%= f.select :hospital_id_eq, options_from_collection_for_select(Hospital.order("hospital_name"), "id", "hospital_name", @q.hospital_id_eq) %>
+
+
+<div class="form-actions">
+<%= f.submit "Search", :name => nil, :class => "btn" %>
+  </div>
+
+<% end %>
+
+
+
+
+
+
+
+   </div>
+
+
+
+</body>
+

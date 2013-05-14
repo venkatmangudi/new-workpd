@@ -1,0 +1,40 @@
+<%- model_class = SanctionedPost -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-bordered" id="sancpost">
+  <thead>
+    <tr>
+      <th>Hospital Name</th>
+      <th>Designation Name</th>
+      <th> Sanctioned Doctors</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sanctioned_posts.each do |sanctioned_post| %>
+      <tr>
+	<td><%= sanctioned_post.hospital.hospital_name %></td>
+        <td><%= sanctioned_post.designation.Designation_English %></td>
+        <td><%= sanctioned_post.sanctioned_posts %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_sanctioned_post_path(sanctioned_post), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_sanctioned_post_path,
+            :class => 'btn' %>
+
+<script>
+    $(document).ready(function() {
+      $('#sancpost').dataTable( {
+        "sPaginationType": "bootstrap"
+      } );
+    }
+  );
+</script>

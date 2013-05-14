@@ -1,0 +1,9 @@
+<%= simple_form_for @block, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :block_name %>
+  <%= f.association :district,label_method: :district_name, value_method: :id, include_blank: false%>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                blocks_path, :class => 'btn' %>
+  </div>
+<% end %>

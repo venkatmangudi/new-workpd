@@ -1,0 +1,7 @@
+<%- model_class = Performaone -%>
+<div class="page-header">
+  <h4>Employee : <%= @performaone.try(:employee).try(:emp_full_name) || "Not Entered" %></h4>
+  <h4>Hospital : <%= @performaone.try(:hospital).try(:hospital_name) || "Not Entered" %></h4>
+  <h5>Performance Period : <%= @performaone.try(:month).try(:month_name) || "Not Entered" %>, <%= @performaone.try(:year) || "Not Entered" %></h5>
+</div>
+<%= render :partial => 'form' %>
