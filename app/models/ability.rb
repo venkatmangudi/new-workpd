@@ -11,33 +11,33 @@ class Ability
         cannot :destroy, :all
         can :read, :all
       elsif user.role.role_name == "district_head"
-        can [:manage,:read], Employee, :hospital => {:district_id => user.district_id}
+        can :manage, Employee, :hospital => {:district_id => user.district_id}
 
-        can [:manage,:read], Hospital, :district_id => user.district_id
+        can :manage, Hospital, :district_id => user.district_id
 
-        can [:manage,:read], Performaone, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :manage, Performaone, :employee=>{:hospital=>{:district_id => user.district_id}}
 
-        can [:manage,:read], HospitalPerforma, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :manage, HospitalPerforma, :employee=>{:hospital=>{:district_id => user.district_id}}
 
-        can [:manage,:read], Promotion, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :manage, Promotion, :employee=>{:hospital=>{:district_id => user.district_id}}
 
-        can [:manage,:read], Showcause, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :manage, Showcause, :employee=>{:hospital=>{:district_id => user.district_id}}
 
-        can [:manage,:read], Achievement, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :manage, Achievement, :employee=>{:hospital=>{:district_id => user.district_id}}
 
-        can [:manage,:read], Leaveemp, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :manage, Leaveemp, :employee=>{:hospital=>{:district_id => user.district_id}}
 
-        can [:manage,:read], Qualification, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :manage, Qualification, :employee=>{:hospital=>{:district_id => user.district_id}}
 
-        can [:manage,:read], Posting, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :manage, Posting, :employee=>{:hospital=>{:district_id => user.district_id}}
 
-        can [:manage,:read], Designation, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :manage, Designation, :employee=>{:hospital=>{:district_id => user.district_id}}
 
-        can [:manage,:read], Dependent, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :manage, Dependent, :employee=>{:hospital=>{:district_id => user.district_id}}
 
-        can [:manage,:read], Address, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :manage, Address, :employee=>{:hospital=>{:district_id => user.district_id}}
 
-        can [:manage,:read], EmployeeWorkDetail, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :manage, EmployeeWorkDetail, :employee=>{:hospital=>{:district_id => user.district_id}}
 
 
         # can :manage, :all, :hospital=>{:district_id=>user.district_id}
