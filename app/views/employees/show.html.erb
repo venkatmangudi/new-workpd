@@ -105,6 +105,16 @@
         <td> <%= @employee.try(:hospital).try(:hospital_name)|| "N/A" %> </td>
     </tr>
 
+    <tr>
+        <td>Reporting Manager</td>
+        <td> <%= @employee.try(:reporting_manager).try(:emp_full_name)|| "N/A" %> </td>
+    </tr>
+
+    <tr>
+        <td>Joining Location</td>
+        <td> <%= @employee.try(:secondary_reporting_manager).try(:emp_full_name)|| "N/A" %> </td>
+    </tr>
+
   </tbody>
 </table>
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
