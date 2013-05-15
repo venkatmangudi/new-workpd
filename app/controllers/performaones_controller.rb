@@ -1,4 +1,5 @@
 class PerformaonesController < InheritedResources::Base
+	load_and_authorize_resource
 	def new
   		@performaone = Performaone.new(:employee_id => params[:id], :hospital_id => params[:hospital_id])
 	end

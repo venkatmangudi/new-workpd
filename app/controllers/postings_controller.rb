@@ -1,4 +1,5 @@
 class PostingsController < InheritedResources::Base
+	load_and_authorize_resource
 	def new
   		@posting = Posting.new(:employee_id => params[:id])
 	end

@@ -1,4 +1,5 @@
 class HospitalPerformasController < InheritedResources::Base
+	load_and_authorize_resource
 	def new
   		@hospital_performa = HospitalPerforma.new(:hospital_id => params[:id])
 	end

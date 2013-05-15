@@ -1,4 +1,5 @@
 class DependentsController < InheritedResources::Base
+	load_and_authorize_resource
 	def new
   		@dependent = Dependent.new(:employee_id => params[:id])
 	end

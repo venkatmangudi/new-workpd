@@ -1,4 +1,5 @@
 class QualificationsController < InheritedResources::Base
+	load_and_authorize_resource
 	def new
   		@qualification = Qualification.new(:employee_id => params[:id])
 	end

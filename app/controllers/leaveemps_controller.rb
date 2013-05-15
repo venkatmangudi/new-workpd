@@ -1,4 +1,5 @@
 class LeaveempsController < InheritedResources::Base
+	load_and_authorize_resource
 	def new
   		@leaveemp = Leaveemp.new(:employee_id => params[:id])
 	end

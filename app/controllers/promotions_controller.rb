@@ -1,4 +1,5 @@
 class PromotionsController < InheritedResources::Base
+	load_and_authorize_resource
 	def new
   		@promotion = Promotion.new(:employee_id => params[:id])
 	end

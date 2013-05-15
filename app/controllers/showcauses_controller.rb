@@ -1,4 +1,5 @@
 class ShowcausesController < InheritedResources::Base
+	load_and_authorize_resource
 	def new
   		@showcause = Showcause.new(:employee_id => params[:id])
 	end
