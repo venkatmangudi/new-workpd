@@ -12,34 +12,49 @@ class Ability
         can :read, :all
       elsif user.role.role_name == "district_head"
         can [:manage,:read], Employee, :hospital => {:district_id => user.district_id}
+        can :new, Employee
 
         can [:manage,:read], Hospital, :district_id => user.district_id
+        can :new, Hospital
 
         can [:manage,:read], Performaone, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :new, Performaone
 
         can [:manage,:read], HospitalPerforma, :hospital=>{:district_id => user.district_id}
+        can :new, HospitalPerforma
 
         can [:manage,:read], EmployeeSanctionWorking, :hospital=>{:district_id => user.district_id}
+        can :new, EmployeeSanctionWorking
 
         can [:manage,:read], Promotion, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :new, Promotion
 
         can [:manage,:read], Showcause, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :new, Showcause
 
         can [:manage,:read], Achievement, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :new, Achievement
 
         can [:manage,:read], Leaveemp, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :new, Leaveemp
 
         can [:manage,:read], Qualification, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :new, Qualification
 
         can [:manage,:read], Posting, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :new, Posting
 
         can [:manage,:read], Designation, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :new, Designation
 
         can [:manage,:read], Dependent, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :new, Dependent
 
         can [:manage,:read], Address, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :new, Address
 
         can [:manage,:read], EmployeeWorkDetail, :employee=>{:hospital=>{:district_id => user.district_id}}
+        can :new, EmployeeWorkDetail
 
 
         # can :manage, :all, :hospital=>{:district_id=>user.district_id}
