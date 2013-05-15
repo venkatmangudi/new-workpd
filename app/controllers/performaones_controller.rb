@@ -19,7 +19,7 @@ class PerformaonesController < InheritedResources::Base
     end
 
     def index
-		@performaones = Performaone.find_all_by_hospital_id(params[:hospital_id])
+		@performaones = Performaone..accessible_by(current_ability).find_all_by_hospital_id(params[:hospital_id])
 	            respond_to do |format|
                     format.html
                     format.js

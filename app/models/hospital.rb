@@ -8,14 +8,14 @@ class Hospital < ActiveRecord::Base
   belongs_to :block
 
   has_many :hospital_reports
-  has_many:health_dept_locations
-  has_many:sanctioned_posts
-  has_many:postings
-  has_many:vw_sanctioned_working_by_hospitals
-  has_many:employee_sanction_workings
-  has_many:employees
-  has_many:hospital_performas
-  has_many:performaones
+  has_many :health_dept_locations
+  has_many :sanctioned_posts
+  has_many :postings
+  has_many :vw_sanctioned_working_by_hospitals
+  has_many :employee_sanction_workings
+  has_many :employees
+  has_many :hospital_performas
+  has_many :performaones
 
   def self.to_csv(options = {})
   CSV.generate(options) do |csv|

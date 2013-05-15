@@ -18,7 +18,7 @@ class HospitalPerformasController < InheritedResources::Base
 	end
 
 	 def index
-		@hospital_performas = HospitalPerforma.find_all_by_hospital_id(params[:hospital_id])
+		@hospital_performas = HospitalPerforma.accessible_by(current_ability).find_all_by_hospital_id(params[:hospital_id])
                 respond_to do |format|
                     format.html
                     format.csv { render text: @hospital_performas.to_csv }
