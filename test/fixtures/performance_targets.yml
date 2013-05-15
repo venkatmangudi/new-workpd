@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  entity: MyString
+  employee_cadre_id: 1
+  hospital_type_id: 1
+  task: MyString
+  minimum_daily_work: 1
+  minimum_monthly_work: 1
+  remarks: MyText
+
+two:
+  entity: MyString
+  employee_cadre_id: 1
+  hospital_type_id: 1
+  task: MyString
+  minimum_daily_work: 1
+  minimum_monthly_work: 1
+  remarks: MyText

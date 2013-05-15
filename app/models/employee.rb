@@ -21,7 +21,7 @@ class Employee < ActiveRecord::Base
   belongs_to:blood_group
   belongs_to:employee_cadre
   belongs_to:employment_type
-  belongs_to:hospital
+  belongs_to:hospital, :foreign_key => "emp_loc_master_id"
   belongs_to:district
   belongs_to:division
   belongs_to:block

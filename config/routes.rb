@@ -1,4 +1,7 @@
 Beauty::Application.routes.draw do
+  resources :performance_targets
+
+
   resources :months
 
 

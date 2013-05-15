@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514130745) do
+ActiveRecord::Schema.define(:version => 20130514212027) do
 
   create_table "DependantDetails", :primary_key => "idno", :force => true do |t|
     t.text "EmpNo"
@@ -529,6 +529,8 @@ ActiveRecord::Schema.define(:version => 20130514130745) do
     t.string  "medical_registration_number", :limit => 25
     t.date    "medical_registration_date"
     t.date    "superannuation_date"
+    t.date    "contract_start_date"
+    t.date    "contract_end_date"
   end
 
   add_index "employee_work_details", ["employee_id"], :name => "employee_id"
@@ -845,6 +847,19 @@ ActiveRecord::Schema.define(:version => 20130514130745) do
     t.string   "month_name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "performance_targets", :force => true do |t|
+    t.string   "entity"
+    t.integer  "employee_cadre_id"
+    t.integer  "hospital_type_id"
+    t.string   "task"
+    t.integer  "minimum_daily_work"
+    t.integer  "minimum_monthly_work"
+    t.text     "remarks"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.string   "unit"
   end
 
   create_table "performaones", :force => true do |t|

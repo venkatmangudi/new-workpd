@@ -11,9 +11,12 @@ class Ability
         cannot :destroy, :all
         can :read, :all
       elsif user.role.role_name == "district_head"
-        # can :manage, Employee, :district_id => user.district_id
+        can :manage, Employee, :hospital => {:district_id => user.district_id}
 
-        can :manage, :all, :district_id=>user.district_id
+        can :manage, Hospital, :district_id => user.district_id
+
+        # can :manage, :all, :hospital=>{:district_id=>user.district_id}
+
         # can :manage, :all
         # cannot :index, Employee do |employee|
         #     employee.district_id != user.district_id

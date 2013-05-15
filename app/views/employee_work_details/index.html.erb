@@ -17,6 +17,8 @@
       <th><%= model_class.human_attribute_name(:medical_registration_number) %></th>
       <th><%= model_class.human_attribute_name(:medical_registration_date) %></th>
       <th><%= model_class.human_attribute_name(:superannuation_date) %></th>
+      <th><%= model_class.human_attribute_name(:contract_start_date) %></th>
+      <th><%= model_class.human_attribute_name(:contract_end_date) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -35,6 +37,8 @@
         <td><%= employee_work_detail.medical_registration_number %></td>
         <td><%= employee_work_detail.medical_registration_date %></td>
         <td><%= employee_work_detail.superannuation_date %></td>
+        <td><%= employee_work_detail.contract_start_date %></td>
+        <td><%= employee_work_detail.contract_end_date %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_employee_work_detail_path(employee_work_detail), :class => 'btn btn-mini' %>

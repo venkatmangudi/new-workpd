@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Entity:</b>
+  <%= @performance_target.entity %>
+</p>
+
+<p>
+  <b>Employee cadre:</b>
+  <%= @performance_target.employee_cadre_id %>
+</p>
+
+<p>
+  <b>Hospital type:</b>
+  <%= @performance_target.hospital_type_id %>
+</p>
+
+<p>
+  <b>Task:</b>
+  <%= @performance_target.task %>
+</p>
+
+<p>
+  <b>Minimum daily work:</b>
+  <%= @performance_target.minimum_daily_work %>
+</p>
+
+<p>
+  <b>Minimum monthly work:</b>
+  <%= @performance_target.minimum_monthly_work %>
+</p>
+
+<p>
+  <b>Unit:</b>
+  <%= @performance_target.unit %>
+</p>
+
+<p>
+  <b>Remarks:</b>
+  <%= @performance_target.remarks %>
+</p>
+
+
+<%= link_to 'Edit', edit_performance_target_path(@performance_target) %> |
+<%= link_to 'Back', performance_targets_path %>

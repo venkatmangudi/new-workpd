@@ -10,6 +10,8 @@
   <%= f.input :medical_registration_number %>
   <%= f.input :medical_registration_date %>
   <%= f.input :superannuation_date %>
+  <%= f.input :contract_start_date ,include_blank: true%>
+  <%= f.input :contract_end_date ,include_blank: true%>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
