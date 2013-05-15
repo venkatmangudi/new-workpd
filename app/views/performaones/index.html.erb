@@ -5,15 +5,16 @@
 
 <p>
   Download:
-  
-  <%= link_to "XLS", performaones_path(format: "xls", :hospital_id => params[:hospital_id]) , :class => 'btn btn-small btn-success' %> 
+
+  <%= link_to "XLS", performaones_path(format: "xls", :hospital_id => params[:hospital_id]) , :class => 'btn btn-small btn-success' %>
+  <%= link_to "PDF", performaones_path(format: "pdf", :hospital_id => params[:hospital_id]) , :class => 'btn btn-small btn-success' %>
 </p>
 <br>
 
 <table class="table table-bordered">
   <thead>
     <tr>
-      
+
       <th>Name of Doctor</th>
       <th>Employee Treasury ID</th>
       <th>Hospital</th>

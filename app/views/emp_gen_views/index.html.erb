@@ -7,6 +7,9 @@
 <h1>Doctors by Gender</h1>
 <br><br>
 
+<p>
+<%= link_to "PDF", emp_gen_views_path(format: "pdf", :q => params[:q]) , :class => 'btn btn-small btn-success' %>
+</p>
 
 <div class="row">
 <div class="span4">
@@ -36,16 +39,16 @@
 <script>
 
 var data = [];
- 
+
 $('tbody#emp_gen_views tr').each(function(){
   var row = {
     value: parseInt($(this).children('td:last').text()),
     label: $(this).children('td:first').text()
   };
- 
+
   data.push(row);
 });
- 
+
 
 Morris.Donut({
   element: 'gen_chart',

@@ -7,6 +7,10 @@
 <h1>Sanctioned by Designation</h1>
 <br><br>
 
+<p>
+<%= link_to "PDF", sanctioned_by_designations_path(format: "pdf", :q => params[:q]) , :class => 'btn btn-small btn-success' %>
+</p>
+
 
 <div class="row">
 <div class="span4">
@@ -36,21 +40,21 @@
 
 <script>
 var data = [];
- 
+
 $('tbody#sanctioned_by_designations tr').each(function(){
   var row = {
     value: parseInt($(this).children('td:last').text()),
     label: $(this).children('td:first').text()
   };
- 
+
   data.push(row);
 });
- 
+
 
 Morris.Donut({
   element: 'desig_chart',
   data: data
 });
- 
+
 
 </script>

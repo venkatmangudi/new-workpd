@@ -68,6 +68,10 @@ def self.to_pdf(raw_array)
 	pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
 	pdf.move_down 10
 
+	pdf.text "Hospital Performance Data"
+
+	pdf.move_down 10
+
 	pdf.table(data_array,:header=>true)
 	pdf
 

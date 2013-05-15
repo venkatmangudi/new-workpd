@@ -7,6 +7,10 @@
 <h1>Employee Tenure by Band</h1>
 <br><br>
 
+<p>
+<%= link_to "PDF", emp_tenure_by_bands_path(format: "pdf", :q => params[:q]) , :class => 'btn btn-small btn-success' %>
+</p>
+
 
 <div class="row">
 <div class="span4">

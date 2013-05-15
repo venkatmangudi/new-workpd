@@ -7,12 +7,16 @@
 <h1>Doctors by Qualification</h1>
 <br><br>
 
+<p>
+<%= link_to "PDF", emp_qual_views_path(format: "pdf", :q => params[:q]) , :class => 'btn btn-small btn-success' %>
+</p>
+
 <div class="row">
 <div class="span4">
 <table class="table table-bordered">
   <thead>
     <tr>
-	<th>Qualification Name</th>	
+	<th>Qualification Name</th>
 	<th>Number of Employees</th>
     </tr>
   </thead>
@@ -34,21 +38,21 @@
 
 <script>
 var data = [];
- 
+
 $('tbody#emp_qual_views tr').each(function(){
   var row = {
     value: parseInt($(this).children('td:last').text()),
     label: $(this).children('td:first').text()
   };
- 
+
   data.push(row);
 });
- 
+
 
 Morris.Donut({
   element: 'qual_chart',
   data: data
 });
- 
+
 </script>
 

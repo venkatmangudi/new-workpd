@@ -10,7 +10,7 @@
 <div class="span4">
 
 <%= search_form_for @q do |f| %>
-  
+
   <%= f.label :specialisation_cont , "Specialisation"%>
   <%= f.select :specialisation_id_eq, options_from_collection_for_select(GraphHospitalVacant.all, "id", "Specialisation_name", @q.specialisation_id_eq) %>
 
@@ -21,6 +21,10 @@
 
 
 <% end %>
+
+<p>
+<%= link_to "PDF", graph_hospital_vacant_by_bands_path(format: "pdf", :q => params[:q]) , :class => 'btn btn-small btn-success' %>
+</p>
 
 <table class="table table-bordered">
   <thead>
@@ -47,20 +51,20 @@
 </div>
 <script>
 var data = [];
- 
+
 $('tbody#graph_hospital_vacant_by_bands tr').each(function(){
   var row = {
     value: parseInt($(this).children('td:last').text()),
     label: $(this).children('td:nth-child(2)').text()
   };
- 
+
   data.push(row);
 });
- 
+
 
 Morris.Donut({
   element: 'hosp_chart',
   data: data
 });
- 
+
 </script>

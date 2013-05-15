@@ -2,12 +2,14 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="//cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
- 
- 
+
+
 <h1>Doctors by Specialisations</h1>
 <br><br>
- 
- 
+ <p>
+ <%= link_to "PDF", emp_spec_views_path(format: "pdf", :q => params[:q]) , :class => 'btn btn-small btn-success' %>
+ </p>
+
 <div class="row">
 <div class="span4">
 <table class="table table-bordered">
@@ -36,36 +38,36 @@
 </div>
 <script>
 var data = [];
- 
+
 $('tbody#emp_spec_views tr').each(function(){
   var row = {
     value: parseInt($(this).children('td:last').text()),
     label: $(this).children('td:first').text()
   };
- 
+
   data.push(row);
 });
- 
+
 
 Morris.Donut({
   element: 'genders_chart',
   data: data
 });
- 
+
 </script>
 
 <script>
 var data2 = [];
- 
+
 $('tbody#emp_spec_views tr').each(function(){
   var row = {
     number_of_employees: parseInt($(this).children('td:last').text()),
     specialization_name: $(this).children('td:first').text()
   };
- 
+
   data2.push(row);
 });
- 
+
 
 Morris.Bar({
   element: 'genders_chart2',
@@ -84,5 +86,5 @@ Morris.Bar({
     }
   }
 });
- 
+
 </script>

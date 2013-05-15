@@ -22,10 +22,16 @@ class PerformaonesController < InheritedResources::Base
 	            respond_to do |format|
                     format.html
                     format.js
-                    format.csv { render text: @performaone.to_csv }                    
-                    format.xls 
+                    format.csv { render text: @performaone.to_csv }
+                    format.xls
+					format.pdf {
+						pdf = Performaone.to_pdf(@performaones)
+						        send_data pdf.render, filename:
+						        "explicit.pdf",
+						        type: "application/pdf"
+                    								  }
                 end
-       
+
 	end
 
 
@@ -39,5 +45,5 @@ class PerformaonesController < InheritedResources::Base
      		 format.html { redirect_to(new_performaone_path(:hospital_id => @lol.hospital_id, :id => @lol.employee_id)) }
     	     format.json { head :no_content }
   		  end
-	end	
+	end
 end

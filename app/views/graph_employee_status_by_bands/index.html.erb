@@ -21,7 +21,9 @@
 
 
 <% end %>
-
+<p>
+<%= link_to "PDF", graph_employee_status_by_bands_path(format: "pdf", :q => params[:q]) , :class => 'btn btn-small btn-success' %>
+</p>
 
 <table class="table table-bordered">
   <thead>
@@ -49,21 +51,21 @@
 </div>
 <script>
 var data = [];
- 
+
 $('tbody#graph_employee_status_by_bands tr').each(function(){
   var row = {
     value: parseInt($(this).children('td:last').text()),
     label: $(this).children('td:nth-child(2)').text()
   };
- 
+
   data.push(row);
 });
- 
+
 
 Morris.Donut({
   element: 'hospsanc_chart',
   data: data
 });
- 
+
 </script>
-           
+
