@@ -9,6 +9,6 @@ development:
   database: bhopal_demo 
   pool: 5
   username: root
-  password:
+  password: root
   host: localhost
 #  socket: /var/run/mysqld/mysqld.sock
