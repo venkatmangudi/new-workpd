@@ -45,7 +45,7 @@ class PerfreportsController < ApplicationController
 				@final_data=Performaone.joins(:employee).joins(:hospital).where(:hospitals=>{ :district_id => district}).order(field+" DESC")
 
 			elsif !division.nil?
-				@final_data=Performaone.joins(:employee).joins(:hospital)..where(:hospitals=>{ :division_id => division}).order(field+" DESC")
+				@final_data=Performaone.joins(:employee).joins(:hospital).where(:hospitals=>{ :division_id => division}).order(field+" DESC")
 			end
 
 		end
