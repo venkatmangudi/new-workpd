@@ -4,6 +4,7 @@ class PerfreportsController < ApplicationController
 		@district=District.all
 		@division=Division.all
 		@fields=[["Outdoor", "outdoor"], ["Indoor", "indoor"], ["Minor Surgeries", "minor_surgery"], ["Major Surgeries", "major_surgery"], ["Normal Delivery", "normal_delivery"], ["Cesarean Delivery", "caesarion_delivery"], ["Pathology", "pathology"], ["X-Ray / Digital X-Ray / Dental X-Ray", "image_scans"], ["Ultra Sound", "ultra_sound"], ["CT Scan / MRI", "ctmri"], ["ECG", "ecg"], ["ECO / EMT", "ecotmt"], ["Blood Units Transfused", "blood_unit_transfused"], ["Hemo-Dialysis", "hemo"], ["MLC", "mlc"], ["Postmortem", "post_mortem"], ["Remarks", "remarks"]]
+		@fields_doc=[["Leaves Taken in the Month", "leave_taken"], ["No. of Patients Checked In OPD in the Month", "patients_opd"], ["No. of Patients Admitted", "patients_admit"], ["No. of Patients Referred to Other Hospitals", "patients_ref"], ["No. of Emergency Calls Attended", "emer_calls"], ["No. of Emergency Duties Performed", "emer_duty"], ["No. of MLC Performed", "mlc_perf"], ["No. of Postmortem Done", "postmor_perf"], ["No. of Days Present in Court for Medico Legal Cases", "court_presence"], ["No. of Major Operations", "op_major"], ["No. of Minor Operations", "op_minor"], ["No. of Cesarean Operations", "op_caesarion"], ["Tests Conducted : Lab Tests", "lab_tests"], ["Tests Conducted : Sonography/X-Ray/CT Scan/MRI/Dental X-Ray/X-Ray", "image_tests"]]
 	end
 
 	def generate_report
