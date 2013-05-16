@@ -46,6 +46,7 @@ gem "twitter-bootstrap-rails"
   gem 'jquery-ui-rails'
   gem 'morrisjs-rails'
   gem 'raphael-rails'
+  gem "select2-rails"
 end
 
 gem 'jquery-rails'

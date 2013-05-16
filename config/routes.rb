@@ -209,6 +209,10 @@ Beauty::Application.routes.draw do
 
   resources :posts
 
+  get "/perfreports/work_perf"
+
+  get "/perfreports/generate_report"
+
 
   get "home/index"
 

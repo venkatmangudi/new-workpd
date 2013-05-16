@@ -15,4 +15,5 @@
  *= require dataTables/jquery.dataTables.bootstrap
  *= require dataTables/extras/TableTools
  *= require dataTables/extras/TableTools_JUI
+ *= require select2
  */

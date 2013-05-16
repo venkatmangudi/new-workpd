@@ -1,0 +1,193 @@
+<div class="container">
+
+	<div class="accordion" id="accordion2">
+	                <div class="accordion-group">
+	                  <div class="accordion-heading">
+	                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+	                      HOSPITAL : STATEWISE
+	                    </a>
+	                  </div>
+	                  <div id="collapseOne" class="accordion-body collapse" >
+	                    <div class="accordion-inner">
+	                      <%= form_tag("/perfreports/generate_report", method: "get") do %>
+	                      <%=select_tag "entity", options_for_select([["Hospital",1],["Employee",2]])%>
+	                            	<%=select_tag "state", options_from_collection_for_select(@states, "id", "state_name")%>
+	                            	  <%=select_tag "field", options_for_select(@fields)%>
+	                            	    <%= submit_tag("Search") %>
+	                            	<% end %>
+	                    </div>
+	                  </div>
+	                </div>
+	                <div class="accordion-group">
+	                  <div class="accordion-heading">
+	                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+	                      DISTRICTWISE
+	                    </a>
+	                  </div>
+	                  <div id="collapseTwo" class="accordion-body collapse">
+	                    <div class="accordion-inner">
+	                      <%= form_tag("/perfreports/generate_report", method: "get") do %>
+	                      <%=select_tag "entity", options_for_select([["Hospital",1],["Employee",2]])%>
+	                            	<%=select_tag "district", options_from_collection_for_select(@district, "id", "district_name")%>
+	                            	  <%=select_tag "field", options_for_select(@fields)%>
+	                            	    <%= submit_tag("Search") %>
+	                            	<% end %>
+	                    </div>
+	                  </div>
+	                </div>
+	                <div class="accordion-group">
+	                  <div class="accordion-heading">
+	                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+	                      DIVISIONWISE
+	                    </a>
+	                  </div>
+	                  <div id="collapseThree" class="accordion-body collapse">
+	                    <div class="accordion-inner">
+	                      <%= form_tag("/perfreports/generate_report", method: "get") do %>
+	                      <%=select_tag "entity", options_for_select([["Hospital",1],["Employee",2]])%>
+	                            	<%=select_tag "division", options_from_collection_for_select(@division, "id", "division_name")%>
+	                            	  <%=select_tag "field", options_for_select(@fields)%>
+	                            	    <%= submit_tag("Search") %>
+	                            	<% end %>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+
+
+
+
+
+				<% if @entity == "1"%>
+					<table class="table table-bordered" id="table1">
+					  <thead>
+					    <tr>
+					      <th>Hospital Name</th>
+					      <th>Outdoor</th>
+					      <th>Indoor</th>
+					      <th>Minor Surgeries</th>
+					      <th>Major Surgeries</th>
+					      <th>Normal Delivery</th>
+					      <th>Caesarian Delivery</th>
+					      <th>Pathology</th>
+					      <th>X-Ray / Digital X-Ray / Dental X-Ray</th>
+					      <th>Ultra Sound</th>
+					      <th>CT Scan / MRI</th>
+					      <th>ECG</th>
+					      <th>ECO / EMT</th>
+					      <th>Blood Units Transfused</th>
+					      <th>Hemo-Dialysis</th>
+					      <th>MLC</th>
+					      <th>Postmortem</th>
+					      <th>Remarks</th>
+
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <% @final_data.each do |hospital_performa| %>
+					      <tr>
+					        <td><%= hospital_performa.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
+					        <td><%= hospital_performa.outdoor %></td>
+					        <td><%= hospital_performa.indoor %></td>
+					        <td><%= hospital_performa.minor_surgery %></td>
+					        <td><%= hospital_performa.major_surgery %></td>
+					        <td><%= hospital_performa.normal_delivery %></td>
+					        <td><%= hospital_performa.caesarion_delivery %></td>
+					        <td><%= hospital_performa.pathology %></td>
+					        <td><%= hospital_performa.image_scans %></td>
+					        <td><%= hospital_performa.ultra_sound %></td>
+					        <td><%= hospital_performa.ctmri %></td>
+					        <td><%= hospital_performa.ecg %></td>
+					        <td><%= hospital_performa.ecotmt %></td>
+					        <td><%= hospital_performa.blood_unit_transfused %></td>
+					        <td><%= hospital_performa.hemo %></td>
+					        <td><%= hospital_performa.mlc %></td>
+					        <td><%= hospital_performa.post_mortem %></td>
+					        <td><%= hospital_performa.remarks %></td>
+
+					      </tr>
+					    <% end %>
+					  </tbody>
+					</table>
+				<%else%>
+					<table class="table table-bordered" id="table1">
+					  <thead>
+					    <tr>
+
+					      <th>Name of Doctor</th>
+					      <th>Employee Treasury ID</th>
+					      <th>Hospital</th>
+					      <th>Month</th>
+					      <th>Year</th>
+					      <th>Post / Specialist</th>
+					      <th>Leaves Taken in the Month</th>
+					      <th>No. of Patients Checked In OPD in the Month</th>
+					      <th>No. of Patients Admitted</th>
+					      <th>No. of Patients Referred to Other Hospitals</th>
+					      <th>No. of Emergency Calls Attended</th>
+					      <th>No. of Emergency Duties Performed</th>
+					      <th>No. of MLC Performed</th>
+					      <th>No. of Postmortem Done</th>
+					      <th>No. of Days Present in Court for Medico Legal Cases</th>
+					      <th>No. of Major Operations</th>
+					      <th>No. of Minor Operations</th>
+					      <th>No. of Cesarean Operations</th>
+					      <th>Tests Conducted : Lab Tests</th>
+					      <th>Tests Conducted : Sonography/X-Ray/CT Scan/MRI/Dental X-Ray/X-Ray</th>
+					      <th>Utilisation of Equipment By Self/Instruction</th>
+					      <th>Information on Available Equipment [Name And Number]</th>
+					      <th>Equipment - Deficiency / Necessary Action</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <% @final_data.each do |performaone| %>
+					      <tr>
+					        <td><%= performaone.employee.emp_full_name %></td>
+					        <td><%= performaone.employee.emp_treasury_id %></td>
+					        <td><%= performaone.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
+					        <td><%= performaone.try(:month).try(:month_name) || "Not Entered" %></td>
+					        <td><%= performaone.try(:year)|| "Not Entered" %></td>
+					        <td><%= performaone.try(:designation).try(:Designation_English) || "Not Entered" %></td>
+					        <td><%= performaone.leave_taken %></td>
+					        <td><%= performaone.patients_opd %></td>
+					        <td><%= performaone.patients_admit %></td>
+					        <td><%= performaone.patients_ref %></td>
+					        <td><%= performaone.emer_calls %></td>
+					        <td><%= performaone.emer_duty %></td>
+					        <td><%= performaone.mlc_perf %></td>
+					        <td><%= performaone.postmor_perf %></td>
+					        <td><%= performaone.court_presence %></td>
+					        <td><%= performaone.op_major %></td>
+					        <td><%= performaone.op_minor %></td>
+					        <td><%= performaone.op_caesarion %></td>
+					        <td><%= performaone.lab_tests %></td>
+					        <td><%= performaone.image_tests %></td>
+					        <td><%= performaone.equip %></td>
+					        <td><%= performaone.equipdetail %></td>
+					        <td><%= performaone.equipdefic %></td>
+					        </tr>
+					    <% end %>
+					  </tbody>
+					</table>
+				<%end%>
+
+</div>
+
+
+<script type="text/javascript">
+
+$(function(){
+	$('#state').select2();
+	$('#field').select2();
+	$('#entity').select2();
+	$('#district').select2();
+	$('#division').select2();
+
+	    $('#table1').dataTable( {
+	      "sPaginationType": "bootstrap"
+	    } );
+
+
+});
+
+</script>

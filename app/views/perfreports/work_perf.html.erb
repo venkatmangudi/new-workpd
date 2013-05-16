@@ -1,0 +1,71 @@
+
+
+<div class="accordion" id="accordion2">
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                      HOSPITAL : STATEWISE
+                    </a>
+                  </div>
+                  <div id="collapseOne" class="accordion-body collapse" >
+                    <div class="accordion-inner">
+                      <%= form_tag("/perfreports/generate_report", method: "get") do %>
+                      <%=select_tag "entity", options_for_select([["Hospital",1],["Employee",2]])%>
+                            	<%=select_tag "state", options_from_collection_for_select(@states, "id", "state_name")%>
+                            	  <%=select_tag "field", options_for_select(@fields)%>
+                            	    <%= submit_tag("Search") %>
+                            	<% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                      DISTRICTWISE
+                    </a>
+                  </div>
+                  <div id="collapseTwo" class="accordion-body in collapse" style="height: auto;">
+                    <div class="accordion-inner">
+                      <%= form_tag("/perfreports/generate_report", method: "get") do %>
+                      <%=select_tag "entity", options_for_select([["Hospital",1],["Employee",2]])%>
+                            	<%=select_tag "state", options_from_collection_for_select(@district, "id", "district_name")%>
+                            	  <%=select_tag "field", options_for_select(@fields)%>
+                            	    <%= submit_tag("Search") %>
+                            	<% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                      DIVISIONWISE
+                    </a>
+                  </div>
+                  <div id="collapseThree" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                      <%= form_tag("/perfreports/generate_report", method: "get") do %>
+                      <%=select_tag "entity", options_for_select([["Hospital",1],["Employee",2]])%>
+                            	<%=select_tag "division", options_from_collection_for_select(@division, "id", "division_name")%>
+                            	  <%=select_tag "field", options_for_select(@fields)%>
+                            	    <%= submit_tag("Search") %>
+                            	<% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+<script type="text/javascript">
+
+$(function(){
+	$('#state').select2();
+	$('#field').select2();
+	$('#entity').select2();
+	$('#district').select2();
+	$('#division').select2();
+
+});
+
+</script>

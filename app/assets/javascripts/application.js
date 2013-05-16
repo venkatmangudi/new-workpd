@@ -24,12 +24,10 @@
 //= require twitter/bootstrap/bootstrap-collapse
 //= require bootstrap-modal
 //= require bootstrap-modalmanager
-
 //= require jquery.purr
 //= require best_in_place
 //= require best_in_place.purr
-
-
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
+//= require select2
 
