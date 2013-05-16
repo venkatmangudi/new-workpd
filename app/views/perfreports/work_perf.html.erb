@@ -10,7 +10,7 @@
                     <div id="collapseOne" class="accordion-body collapse" >
                       <div class="accordion-inner">
                         <%= form_tag("/perfreports/generate_report", method: "get") do %>
-                              <%=hidden_field_tag 'entity', '2'%>
+                              <%=hidden_field_tag 'entity', '1'%>
                                 <%=select_tag "state", options_from_collection_for_select(@states, "id", "state_name")%>
                                   <%=select_tag "field", options_for_select(@fields)%>
                                     <%= submit_tag("Search") %>
