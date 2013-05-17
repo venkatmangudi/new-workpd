@@ -1,0 +1,141 @@
+<div class="container">
+
+    <div class="accordion" id="accordion2">
+                    <div class="accordion-group">
+                      <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                          HOSPITAL
+                        </a>
+                      </div>
+                      <div id="collapseOne" class="accordion-body collapse" >
+                        <div class="accordion-inner">
+                          <%= form_tag("/perfreports/generate_report", method: "get") do %>
+                                <%=hidden_field_tag 'entity', '1'%>
+                                  <%=select_tag "hospital", options_from_collection_for_select(@hospitals, "id", "hospital_name")%>
+                                    <%=select_tag "field", options_for_select(@fields)%>
+                                      <%= submit_tag("Search") %>
+                                  <% end %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-group">
+                      <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                          DOCTOR
+                        </a>
+                      </div>
+                      <div id="collapseTwo" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                          <%= form_tag("/perfreports/generate_report", method: "get") do %>
+                                <%=hidden_field_tag 'entity', '2'%>
+                                  <%=select_tag "employee", options_from_collection_for_select(@employees, "id", "emp_full_name")%>
+                                    <%=select_tag "field", options_for_select(@fields_doc)%>
+                                      <%= submit_tag("Search") %>
+                                  <% end %>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+
+
+
+
+        <% if @entity == "1"%>
+          <h1>Metric : <%=@metric%></h1>
+          <table class="table table-bordered" id="table1">
+            <thead>
+              <tr>
+                <th>Hospital Name</th>
+                <th>Month</th>
+                <th>Year</th>
+                <th><%=@metric%></th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <% @final_data.each do |hospital_performa| %>
+                <tr>
+                  <td><%= hospital_performa.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
+                  <td><%= hospital_performa.month.month_name %></td>
+                  <td><%= hospital_performa.year%></td>
+                  <td><%= hospital_performa.attributes[@field] %></td>
+
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <%else%>
+          <table class="table table-bordered" id="table1">
+            <h1>Metric : <%=@metric_doc%></h1>
+            <thead>
+              <tr>
+
+                <th>Name of Doctor</th>
+                <th>Employee Treasury ID</th>
+                <th>Hospital</th>
+                <th>Month</th>
+                <th>Year</th>
+                <th>Post / Specialist</th>
+                <th><%=@metric_doc%></th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <% @final_data.each do |performaone| %>
+                <tr>
+                  <td><%= performaone.employee.emp_full_name %></td>
+                  <td><%= performaone.employee.emp_treasury_id %></td>
+                  <td><%= performaone.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
+                  <td><%= performaone.try(:month).try(:month_name) || "Not Entered" %></td>
+                  <td><%= performaone.try(:year)|| "Not Entered" %></td>
+                  <td><%= performaone.try(:designation).try(:Designation_English) || "Not Entered" %></td>
+                  <td><%= performaone.attributes[@field] %></td>
+
+                  </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <%end%>
+
+</div>
+
+<%= content_tag :div, "", id: "gen_chart" %>
+
+
+<script type="text/javascript">
+
+
+Morris.Line({
+  element: 'gen_chart',
+  data: [
+    { y: '2006', a: 100, b: 90 },
+    { y: '2007', a: 75,  b: 65 },
+    { y: '2008', a: 50,  b: 40 },
+    { y: '2009', a: 75,  b: 65 },
+    { y: '2010', a: 50,  b: 40 },
+    { y: '2011', a: 75,  b: 65 },
+    { y: '2012', a: 100, b: 90 }
+  ],
+  xkey: 'y',
+  ykeys: ['a', 'b'],
+  labels: ['Series A', 'Series B']
+});
+
+$(function(){
+  $('#state').select2();
+  $('#field').select2();
+  $('#entity').select2();
+  $('#district').select2();
+  $('#division').select2();
+
+      $('#table1').dataTable( {
+        "sPaginationType": "bootstrap"
+      } );
+
+
+});
+
+</script>
