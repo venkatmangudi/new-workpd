@@ -9,7 +9,7 @@
                       </div>
                       <div id="collapseOne" class="accordion-body collapse" >
                         <div class="accordion-inner">
-                          <%= form_tag("/perfreports/generate_report", method: "get") do %>
+                          <%= form_tag("/visual_reports/generate_report", method: "get") do %>
                                 <%=hidden_field_tag 'entity', '1'%>
                                   <%=select_tag "hospital", options_from_collection_for_select(@hospitals, "id", "hospital_name")%>
                                     <%=select_tag "field", options_for_select(@fields)%>
@@ -26,7 +26,7 @@
                       </div>
                       <div id="collapseTwo" class="accordion-body collapse">
                         <div class="accordion-inner">
-                          <%= form_tag("/perfreports/generate_report", method: "get") do %>
+                          <%= form_tag("/visual_reports/generate_report", method: "get") do %>
                                 <%=hidden_field_tag 'entity', '2'%>
                                   <%=select_tag "employee", options_from_collection_for_select(@employees, "id", "emp_full_name")%>
                                     <%=select_tag "field", options_for_select(@fields_doc)%>
@@ -40,11 +40,13 @@
 
 
 
-
-
+                  <%dates=[]%>
+                  <%final_value=[]%>
+                  <%final_metric=""%>
 
         <% if @entity == "1"%>
           <h1>Metric : <%=@metric%></h1>
+          <%final_metric=@metric%>
           <table class="table table-bordered" id="table1">
             <thead>
               <tr>
@@ -62,6 +64,8 @@
                   <td><%= hospital_performa.month.month_name %></td>
                   <td><%= hospital_performa.year%></td>
                   <td><%= hospital_performa.attributes[@field] %></td>
+                  <% final_value.push({:y=>(performaone.year.to_s+"-"+(performaone.month_id.to_s.size>1 ? performaone.month_id.to_s : "0"+performaone.month_id.to_s)),:a=>hospital_performa.attributes[@field]}) %>
+
 
                 </tr>
               <% end %>
@@ -70,6 +74,7 @@
         <%else%>
           <table class="table table-bordered" id="table1">
             <h1>Metric : <%=@metric_doc%></h1>
+            <%final_metric=@metric_doc%>
             <thead>
               <tr>
 
@@ -93,6 +98,8 @@
                   <td><%= performaone.try(:year)|| "Not Entered" %></td>
                   <td><%= performaone.try(:designation).try(:Designation_English) || "Not Entered" %></td>
                   <td><%= performaone.attributes[@field] %></td>
+                  <% final_value.push({:y=>(performaone.year.to_s+"-"+(performaone.month_id.to_s.size>1 ? performaone.month_id.to_s : "0"+performaone.month_id.to_s)),:a=>performaone.attributes[@field]}) %>
+
 
                   </tr>
               <% end %>
@@ -107,33 +114,22 @@
 
 <script type="text/javascript">
 
+<%puts final_value%>
+
+data=<%=final_value.to_json.html_safe%>;
 
 Morris.Line({
   element: 'gen_chart',
-  data: [
-    { y: '2006', a: 100, b: 90 },
-    { y: '2007', a: 75,  b: 65 },
-    { y: '2008', a: 50,  b: 40 },
-    { y: '2009', a: 75,  b: 65 },
-    { y: '2010', a: 50,  b: 40 },
-    { y: '2011', a: 75,  b: 65 },
-    { y: '2012', a: 100, b: 90 }
-  ],
+  data: data,
   xkey: 'y',
-  ykeys: ['a', 'b'],
-  labels: ['Series A', 'Series B']
+  ykeys: ['a'],
+  labels: "<%=final_metric%>"
 });
 
 $(function(){
-  $('#state').select2();
-  $('#field').select2();
-  $('#entity').select2();
-  $('#district').select2();
-  $('#division').select2();
+  $('#hospital').select2();
+  $('#employee').select2();
 
-      $('#table1').dataTable( {
-        "sPaginationType": "bootstrap"
-      } );
 
 
 });

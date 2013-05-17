@@ -18,7 +18,7 @@ class VisualReportsController < ApplicationController
 		@month_range=((Date.today.beginning_of_month - 6.months)..(Date.today.beginning_of_month)).map{|d| d.strftime("%m").to_i}.uniq
 		@year_range=((Date.today.beginning_of_month - 6.months)..(Date.today.beginning_of_month)).map{|d| d.strftime("%Y").to_i}.uniq
 
-		@amployee = params[:employee]
+		@employee = params[:employee]
 
 		@hospital = params[:hospital]
 
@@ -44,3 +44,4 @@ class VisualReportsController < ApplicationController
 
 	end
 end
+
