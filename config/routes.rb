@@ -213,6 +213,10 @@ Beauty::Application.routes.draw do
 
   get "/perfreports/generate_report"
 
+  get "/visual_reports/index"
+
+  get "/visual_reports/generate_report"
+
 
   get "home/index"
 
