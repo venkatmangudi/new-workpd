@@ -217,6 +217,8 @@ Beauty::Application.routes.draw do
 
   get "/visual_reports/generate_report"
 
+  get "/workpd/index"
+
 
   get "home/index"
 

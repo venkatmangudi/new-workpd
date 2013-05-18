@@ -110,6 +110,31 @@
 
 
 				<% if @entity == "1"%>
+
+				<% #- @performance_targets = PerformanceTarget.all -%>
+				<% #opd_min_1=@performance_targets.select{|h| h.task=="OPD" && h.entity="HOSPITAL" && h.hospital_type_id == 1}.map(&:minimum_monthly_work)[0]%>
+				<% #opd_min_2=@performance_targets.select{|h| h.task=="OPD" && h.entity="HOSPITAL" && h.hospital_type_id == 2}.map(&:minimum_monthly_work)[0]%>
+				<% #opd_min_3=@performance_targets.select{|h| h.task=="OPD" && h.entity="HOSPITAL" && h.hospital_type_id == 3}.map(&:minimum_monthly_work)[0]%>
+				<% #opd_min_4=@performance_targets.select{|h| h.task=="OPD" && h.entity="HOSPITAL" && h.hospital_type_id == 4}.map(&:minimum_monthly_work)[0]%>
+				<% #maj_op_min=@performance_targets.select{|h| h.task=="MAJOR SURGERY" && h.entity="HOSPITAL" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+				<% #minor_op_min=@performance_targets.select{|h| h.task=="MINOR SURGERY" && h.entity="HOSPITAL" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+				<% #cesarean_op_min=@performance_targets.select{|h| h.task=="CEASARION" && h.entity="HOSPITAL" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+				<% #sono_min=@performance_targets.select{|h| h.task=="SONOGRAPHY" && h.entity="HOSPITAL" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+				<% #patho_min=@performance_targets.select{|h| h.task=="PATHOLOGY TEST" && h.entity="HOSPITAL" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+				<% #xray_min=@performance_targets.select{|h| h.task=="XRAY" && h.entity="HOSPITAL" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+
+				<p>
+				  Download:
+
+				  <%= link_to "XLS", perfreports_generate_report_path(format: "xls", :state => params[:state] , :entity=> params[:entity] , :district=> params[:district] , :division=> params[:division], :field=>params[:field] ) , :class => 'btn btn-small btn-success' %>
+				  <%= link_to "PDF", perfreports_generate_report_path(format: "pdf", :state => params[:state] , :entity=> params[:entity] , :district=> params[:district] , :division=> params[:division], :field=>params[:field] ) , :class => 'btn btn-small btn-primary' %>
+				</p>
+				<br>
+
+
+
+
+
 					<h1>Metric : <%=@metric%></h1>
 					<table class="table table-bordered" id="table1">
 					  <thead>
@@ -162,6 +187,27 @@
 					  </tbody>
 					</table>
 				<%else%>
+
+
+				<%- @performance_targets = PerformanceTarget.all -%>
+				<%opd_min=@performance_targets.select{|h| h.task=="OPD" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+				<%maj_op_min=@performance_targets.select{|h| h.task=="MAJOR SURGERY" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+				<%minor_op_min=@performance_targets.select{|h| h.task=="MINOR SURGERY" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+				<%cesarean_op_min=@performance_targets.select{|h| h.task=="CEASARION" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+				<%sono_min=@performance_targets.select{|h| h.task=="SONOGRAPHY" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+				<%patho_min=@performance_targets.select{|h| h.task=="PATHOLOGY TEST" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+				<%xray_min=@performance_targets.select{|h| h.task=="XRAY" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+
+
+					<p>
+					  Download:
+
+					  <%= link_to "XLS", perfreports_generate_report_path(format: "xls", :state => params[:state] , :entity=> params[:entity] , :district=> params[:district] , :division=> params[:division], :field=>params[:field] ) , :class => 'btn btn-small btn-success' %>
+					  <%= link_to "PDF", perfreports_generate_report_path(format: "pdf", :state => params[:state] , :entity=> params[:entity] , :district=> params[:district] , :division=> params[:division], :field=>params[:field] ) , :class => 'btn btn-small btn-primary' %>
+					</p>
+					<br>
+
+
 					<table class="table table-bordered" id="table1">
 						<h1>Metric : <%=@metric_doc%></h1>
 					  <thead>
@@ -202,7 +248,7 @@
 					        <td><%= performaone.try(:year)|| "Not Entered" %></td>
 					        <td><%= performaone.try(:designation).try(:Designation_English) || "Not Entered" %></td>
 					        <td><%= performaone.leave_taken %></td>
-					        <td><%= performaone.patients_opd %></td>
+					        <td><%= performaone.patients_opd %> / <%=opd_min%></td>
 					        <td><%= performaone.patients_admit %></td>
 					        <td><%= performaone.patients_ref %></td>
 					        <td><%= performaone.emer_calls %></td>
@@ -210,11 +256,11 @@
 					        <td><%= performaone.mlc_perf %></td>
 					        <td><%= performaone.postmor_perf %></td>
 					        <td><%= performaone.court_presence %></td>
-					        <td><%= performaone.op_major %></td>
-					        <td><%= performaone.op_minor %></td>
-					        <td><%= performaone.op_caesarion %></td>
-					        <td><%= performaone.lab_tests %></td>
-					        <td><%= performaone.image_tests %></td>
+					        <td><%= performaone.op_major %> / <%=maj_op_min%></td>
+					        <td><%= performaone.op_minor %> / <%=minor_op_min%></td>
+					        <td><%= performaone.op_caesarion %> / <%=cesarean_op_min%></td>
+					        <td><%= performaone.lab_tests %> / <%=patho_min%></td>
+					        <td><%= performaone.image_tests %> / <%=(sono_min+xray_min)%></td>
 					        <td><%= performaone.equip %></td>
 					        <td><%= performaone.equipdetail %></td>
 					        <td><%= performaone.equipdefic %></td>

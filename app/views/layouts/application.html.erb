@@ -85,9 +85,11 @@
           <p class="navbar-text pull-right">
             Logged in as:
             <a href="/users/edit" data-method="get"><%= current_user.fname %> <%= current_user.lname %></a>
-            
-            |
-          
+            <% if current_user.role.role_name == 'admin' %>
+                       |
+                       <a href="/user" data-method="get">Manage User</a>
+                       <% end %>
+                       |
             <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
           </p>
           <a class="brand" href="/home/index">HRMIS</a>
@@ -107,16 +109,132 @@
 
 <% else %>
 
-       
+<li class="dropdown">
+                <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Dashboard <b class="caret"></b></a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                            <li class="dropdown-submenu">
+                        <a tabindex="-1" href="#">Reports</a>
+                        <ul class="dropdown-menu">
+                          <li><%= link_to "Doctors by Specialisation", emp_spec_views_path %></li>
+                          <li><%= link_to "Doctors by Qualification", emp_qual_views_path %></li>
+                          <li><%= link_to "Doctors by Gender", emp_gen_views_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to "Sanctioned By Designations", sanctioned_by_designations_path %></li>
+        <li class="divider"></li>
+              <li><%= link_to "Employees by Age Band", employee_age_by_bands_path %></li>
+        <li><%= link_to "Employees by Tenure Band", emp_tenure_by_bands_path %></li>
+                        </ul>
+                      </li>
+                  <!--        <li><%= link_to "Report Name1", employees_path %></li>
+                          <li><%= link_to "Report Name2", qualifications_path %></li>
+                          <li><%= link_to "Report Name3", specialisations_path %></li>
+                          <li><%= link_to "Report Name4", dependents_path %></li> -->
+
+                          <!-- <li class="divider"></li>
+                                              <li><a tabindex="-1" href="#">Separated link</a></li> -->
+                                            </ul>
+                          </li>
+                          <li class="dropdown">
+                                          <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Employees <b class="caret"></b></a>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                                                  <li><%= link_to "View Employees", employees_path %></li>
+                                                    <li><a href="/employees/new" data-method="get">Add Employee</a></li>
+                                <li class="divider"></li>
+                                <li><%= link_to "Blood Groups", blood_groups_path %></li>
+                                <li><%= link_to "Marital Statuses", martial_stats_path %></li>
+                                <li><%= link_to "Religions", religions_path %></li>
+                                <li><%= link_to "Castes", castes_path %></li>
+                                              <!-- <li class="divider"></li>
+                                              <li><a tabindex="-1" href="#">Separated link</a></li> -->
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                                        <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Hierarchies <b class="caret"></b></a>
+                                                          <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                                                            <li><%= link_to "States", states_path %></li>
+                                                            <li><%= link_to "Divisions", divisions_path %></li>
+                                                            <li><%= link_to "Districts", districts_path %></li>
+                                                            <li><%= link_to "Blocks", blocks_path %></li>
+
+
+
+                                        <!--                    <li><%= link_to "Healthcare Centers", hospitals_path %></li>
+                                                            <li class="divider"></li>
+
+
+                                                              <li class="dropdown-submenu">
+                                                                <a tabindex="-1" href="#">Institutions</a>
+                                                                <ul class="dropdown-menu">
+                                                                  <li><%= link_to "Institutions Master", institution_masters_path %></li>
+                                                                  <li class="divider"></li>
+                                                                  <li><%= link_to "Institution Type", institution_types_path %></li>
+                                                                  <li><%= link_to "Special Cadre", special_cadres_path %></li>
+                                                                </ul>
+                                                              </li>
+
+                                                            <li class="divider"></li>
+                                                              <li><%= link_to "Gender", genders_path %></li>
+                                                              <li><%= link_to "Marial Status", martial_stats_path %></li>
+                                                              <li><%= link_to "Blood Group", blood_groups_path %></li>
+
+                                                             <li class="divider"></li>
+                                                              <li class="dropdown-submenu">
+                                                                <a tabindex="-1" href="#">Ethnicity</a>
+                                                                <ul class="dropdown-menu">
+                                                                  <li><%= link_to "Caste", castes_path %></li>
+                                                                  <li><%= link_to "Category", categories_path %></li>
+                                                                  <li><%= link_to "Religion", religions_path %></li>
+                                                                </ul>
+                                                              </li>
+
+                                                            <li class="divider"></li>
+                                                              <li class="dropdown-submenu">
+                                                                <a tabindex="-1" href="#">Location Data</a>
+                                                                <ul class="dropdown-menu">
+                                                                  <li><%= link_to "Location Master", locations_path %></li>
+                                                                  <li class="divider"></li>
+                                                                  <li><%= link_to "Districts", districts_path %></li>
+                                                                  <li><%= link_to "Cities", cities_path %></li>
+                                                                  <li><%= link_to "States", states_path %></li>
+                                                                  <li><%= link_to "Pincodes", pincodes_path %></li>
+                                                                </ul>
+                                                              </li>    -->
 
 
 
 
 <% end %>
 
+<!-- <li class="divider"></li>
+                    <li><a tabindex="-1" href="#">Separated link</a></li> -->
+                  </ul>
+              </li>
 
 
-            <!-- <li><%= link_to "Venkat Sir" %></li>    -->         
+
+
+         <li class="dropdown">
+                <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Hospitals <b class="caret"></b></a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                    <li><%= link_to "Hospital List", hospitals_path %></li>
+                  <li><%= link_to "Sanctioned Posts", sanctioned_posts_path %></li>
+                        <li><%= link_to "Additional Charges", additional_charges_path %></li>
+       </ul>
+      </li>
+
+         <li class="dropdown">
+                <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                    <li><%= link_to "Performa Reports", "/workpd/index" %></li>
+                  <li><%= link_to "Performance Reports", "/perfreports/work_perf" %></li>
+                        <li><%= link_to "Visual Reports", "/visual_reports/index" %></li>
+       </ul>
+      </li>
+
+
+
+
+            <!-- <li><%= link_to "Venkat Sir" %></li>    -->
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -125,11 +243,11 @@
 <% end %>
 <div class="container">
 	<div class="row">
-    
+
 		<div class="span12"><%= yield %></div>
 <!-- 		<div class="span3">
 			<h2>About Us</h2>
-			This is SkyKOG Magic :) 
+			This is SkyKOG Magic :)
 
 		</div> -->
 	</div><br><br><br>

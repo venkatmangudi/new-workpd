@@ -50,6 +50,17 @@ class PerfreportsController < ApplicationController
 
 		end
 
+			            respond_to do |format|
+		                    format.html
+		                    format.xls
+							format.pdf {
+								pdf = ReportPdfModule.perf_pdf(@final_data,@entity,@metric,@metric_doc)
+								        send_data pdf.render, filename:
+								        "explicit.pdf",
+								        type: "application/pdf"
+		                    								  }
+		                end
+
 
 
 
