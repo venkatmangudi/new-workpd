@@ -1,0 +1,144 @@
+<% if @entity == "1"%>
+
+<% #- @performance_targets = PerformanceTarget.all -%>
+<% #opd_min_1=@performance_targets.select{|h| h.task=="OPD" && h.entity="HOSPITAL" && h.hospital_type_id == 1}.map(&:minimum_monthly_work)[0]%>
+<% #opd_min_2=@performance_targets.select{|h| h.task=="OPD" && h.entity="HOSPITAL" && h.hospital_type_id == 2}.map(&:minimum_monthly_work)[0]%>
+<% #opd_min_3=@performance_targets.select{|h| h.task=="OPD" && h.entity="HOSPITAL" && h.hospital_type_id == 3}.map(&:minimum_monthly_work)[0]%>
+<% #opd_min_4=@performance_targets.select{|h| h.task=="OPD" && h.entity="HOSPITAL" && h.hospital_type_id == 4}.map(&:minimum_monthly_work)[0]%>
+<% #maj_op_min=@performance_targets.select{|h| h.task=="MAJOR SURGERY" && h.entity="HOSPITAL" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+<% #minor_op_min=@performance_targets.select{|h| h.task=="MINOR SURGERY" && h.entity="HOSPITAL" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+<% #cesarean_op_min=@performance_targets.select{|h| h.task=="CEASARION" && h.entity="HOSPITAL" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+<% #sono_min=@performance_targets.select{|h| h.task=="SONOGRAPHY" && h.entity="HOSPITAL" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+<% #patho_min=@performance_targets.select{|h| h.task=="PATHOLOGY TEST" && h.entity="HOSPITAL" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+<% #xray_min=@performance_targets.select{|h| h.task=="XRAY" && h.entity="HOSPITAL" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+
+
+
+
+	<h1>Metric : <%=@metric%></h1>
+	<table class="table table-bordered" id="table1" border="1">
+	  <thead>
+	    <tr>
+	      <th>Hospital Name</th>
+	      <th>Outdoor</th>
+	      <th>Indoor</th>
+	      <th>Minor Surgeries</th>
+	      <th>Major Surgeries</th>
+	      <th>Normal Delivery</th>
+	      <th>Caesarian Delivery</th>
+	      <th>Pathology</th>
+	      <th>X-Ray / Digital X-Ray / Dental X-Ray</th>
+	      <th>Ultra Sound</th>
+	      <th>CT Scan / MRI</th>
+	      <th>ECG</th>
+	      <th>ECO / EMT</th>
+	      <th>Blood Units Transfused</th>
+	      <th>Hemo-Dialysis</th>
+	      <th>MLC</th>
+	      <th>Postmortem</th>
+	      <th>Remarks</th>
+
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <% @final_data.each do |hospital_performa| %>
+	      <tr>
+	        <td><%= hospital_performa.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
+	        <td><%= hospital_performa.outdoor %></td>
+	        <td><%= hospital_performa.indoor %></td>
+	        <td><%= hospital_performa.minor_surgery %></td>
+	        <td><%= hospital_performa.major_surgery %></td>
+	        <td><%= hospital_performa.normal_delivery %></td>
+	        <td><%= hospital_performa.caesarion_delivery %></td>
+	        <td><%= hospital_performa.pathology %></td>
+	        <td><%= hospital_performa.image_scans %></td>
+	        <td><%= hospital_performa.ultra_sound %></td>
+	        <td><%= hospital_performa.ctmri %></td>
+	        <td><%= hospital_performa.ecg %></td>
+	        <td><%= hospital_performa.ecotmt %></td>
+	        <td><%= hospital_performa.blood_unit_transfused %></td>
+	        <td><%= hospital_performa.hemo %></td>
+	        <td><%= hospital_performa.mlc %></td>
+	        <td><%= hospital_performa.post_mortem %></td>
+	        <td><%= hospital_performa.remarks %></td>
+
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+<%else%>
+
+
+<%- @performance_targets = PerformanceTarget.all -%>
+<%opd_min=@performance_targets.select{|h| h.task=="OPD" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+<%maj_op_min=@performance_targets.select{|h| h.task=="MAJOR SURGERY" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+<%minor_op_min=@performance_targets.select{|h| h.task=="MINOR SURGERY" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+<%cesarean_op_min=@performance_targets.select{|h| h.task=="CEASARION" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+<%sono_min=@performance_targets.select{|h| h.task=="SONOGRAPHY" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+<%patho_min=@performance_targets.select{|h| h.task=="PATHOLOGY TEST" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+<%xray_min=@performance_targets.select{|h| h.task=="XRAY" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]%>
+
+
+
+
+	<table class="table table-bordered" id="table1" border="1">
+		<h1>Metric : <%=@metric_doc%></h1>
+	  <thead>
+	    <tr>
+
+	      <th>Name of Doctor</th>
+	      <th>Employee Treasury ID</th>
+	      <th>Hospital</th>
+	      <th>Month</th>
+	      <th>Year</th>
+	      <th>Post / Specialist</th>
+	      <th>Leaves Taken in the Month</th>
+	      <th>No. of Patients Checked In OPD in the Month</th>
+	      <th>No. of Patients Admitted</th>
+	      <th>No. of Patients Referred to Other Hospitals</th>
+	      <th>No. of Emergency Calls Attended</th>
+	      <th>No. of Emergency Duties Performed</th>
+	      <th>No. of MLC Performed</th>
+	      <th>No. of Postmortem Done</th>
+	      <th>No. of Days Present in Court for Medico Legal Cases</th>
+	      <th>No. of Major Operations</th>
+	      <th>No. of Minor Operations</th>
+	      <th>No. of Cesarean Operations</th>
+	      <th>Tests Conducted : Lab Tests</th>
+	      <th>Tests Conducted : Sonography/X-Ray/CT Scan/MRI/Dental X-Ray/X-Ray</th>
+	      <th>Utilisation of Equipment By Self/Instruction</th>
+	      <th>Information on Available Equipment [Name And Number]</th>
+	      <th>Equipment - Deficiency / Necessary Action</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <% @final_data.each do |performaone| %>
+	      <tr>
+	        <td><%= performaone.employee.emp_full_name %></td>
+	        <td><%= performaone.employee.emp_treasury_id %></td>
+	        <td><%= performaone.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
+	        <td><%= performaone.try(:month).try(:month_name) || "Not Entered" %></td>
+	        <td><%= performaone.try(:year)|| "Not Entered" %></td>
+	        <td><%= performaone.try(:designation).try(:Designation_English) || "Not Entered" %></td>
+	        <td><%= performaone.leave_taken %></td>
+	        <td><%= performaone.patients_opd %> / <%=opd_min%></td>
+	        <td><%= performaone.patients_admit %></td>
+	        <td><%= performaone.patients_ref %></td>
+	        <td><%= performaone.emer_calls %></td>
+	        <td><%= performaone.emer_duty %></td>
+	        <td><%= performaone.mlc_perf %></td>
+	        <td><%= performaone.postmor_perf %></td>
+	        <td><%= performaone.court_presence %></td>
+	        <td><%= performaone.op_major %> / <%=maj_op_min%></td>
+	        <td><%= performaone.op_minor %> / <%=minor_op_min%></td>
+	        <td><%= performaone.op_caesarion %> / <%=cesarean_op_min%></td>
+	        <td><%= performaone.lab_tests %> / <%=patho_min%></td>
+	        <td><%= performaone.image_tests %> / <%=(sono_min+xray_min)%></td>
+	        <td><%= performaone.equip %></td>
+	        <td><%= performaone.equipdetail %></td>
+	        <td><%= performaone.equipdefic %></td>
+	        </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+<%end%>
