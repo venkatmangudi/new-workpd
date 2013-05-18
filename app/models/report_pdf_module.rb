@@ -118,7 +118,7 @@ module ReportPdfModule
 
 
 
-		       final_data.each do |hospital_performa|
+		       raw_array.each do |hospital_performa|
 
 		       	normal_array =[]
 
@@ -131,6 +131,17 @@ module ReportPdfModule
 
 		       end
 
+		       pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :portrait)
+
+		       pdf.font_size=10
+		       pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
+		       pdf.move_down 10
+		       pdf.text metric
+		       pdf.move_down 10
+
+		       pdf.table(data_array,:header=>true)
+		       pdf
+
 		else
 
 
@@ -139,7 +150,7 @@ module ReportPdfModule
 
 
 
-		       final_data.each do |performaone|
+		       raw_array.each do |performaone|
 
 		       	normal_array=[]
 
@@ -152,18 +163,21 @@ module ReportPdfModule
 		           normal_array<<performaone.attributes[field]
 		           data_array << normal_array
 		       end
+
+		       pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :portrait)
+
+		       pdf.font_size=10
+		       pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
+		       pdf.move_down 10
+		       pdf.text metric_doc
+		       pdf.move_down 10
+
+		       pdf.table(data_array,:header=>true)
+		       pdf
 		end
 
-		pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :portrait)
-
-		pdf.font_size=10
-		pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
-		pdf.move_down 10
-		pdf.text "Employee Age by Band"
-		pdf.move_down 10
-
-		pdf.table(data_array,:header=>true)
 		pdf
+
 
 	end
 end
