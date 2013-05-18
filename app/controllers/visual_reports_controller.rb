@@ -1,6 +1,6 @@
 class VisualReportsController < ApplicationController
 	def index
-		@employees=Employee.all
+		@employees=Employee.order('emp_full_name ASC')
 		@hospitals=Hospital.all
 
 		@fields=[["Outdoor", "outdoor"], ["Indoor", "indoor"], ["Minor Surgeries", "minor_surgery"], ["Major Surgeries", "major_surgery"], ["Normal Delivery", "normal_delivery"], ["Cesarean Delivery", "caesarion_delivery"], ["Pathology", "pathology"], ["X-Ray / Digital X-Ray / Dental X-Ray", "image_scans"], ["Ultra Sound", "ultra_sound"], ["CT Scan / MRI", "ctmri"], ["ECG", "ecg"], ["ECO / EMT", "ecotmt"], ["Blood Units Transfused", "blood_unit_transfused"], ["Hemo-Dialysis", "hemo"], ["MLC", "mlc"], ["Postmortem", "post_mortem"], ["Remarks", "remarks"]]
@@ -9,7 +9,7 @@ class VisualReportsController < ApplicationController
 
 
 	def generate_report
-		@employees=Employee.all
+		@employees=Employee.order('emp_full_name ASC')
 		@hospitals=Hospital.all
 
 		@fields=[["Outdoor", "outdoor"], ["Indoor", "indoor"], ["Minor Surgeries", "minor_surgery"], ["Major Surgeries", "major_surgery"], ["Normal Delivery", "normal_delivery"], ["Cesarean Delivery", "caesarion_delivery"], ["Pathology", "pathology"], ["X-Ray / Digital X-Ray / Dental X-Ray", "image_scans"], ["Ultra Sound", "ultra_sound"], ["CT Scan / MRI", "ctmri"], ["ECG", "ecg"], ["ECO / EMT", "ecotmt"], ["Blood Units Transfused", "blood_unit_transfused"], ["Hemo-Dialysis", "hemo"], ["MLC", "mlc"], ["Postmortem", "post_mortem"], ["Remarks", "remarks"]]
@@ -37,6 +37,17 @@ class VisualReportsController < ApplicationController
 			@metric_doc=["Leaves Taken in the Month","No. of Patients Checked In OPD in the Month","No. of Patients Admitted","No. of Patients Referred to Other Hospitals","No. of Emergency Calls Attended","No. of Emergency Duties Performed","No. of MLC Performed","No. of Postmortem Done","No. of Days Present in Court for Medico Legal Cases","No. of Major Operations","No. of Minor Operations","No. of Cesarean Operations","Tests Conducted : Lab Tests","Tests Conducted : Sonography/X-Ray/CT Scan/MRI/Dental X-Ray/X-Ray"][index_doc]
 			@final_data=Performaone.where(:month_id=>@month_range).where(:year=>@year_range).where(:employee_id=>@employee)
 		end
+
+			            respond_to do |format|
+		                    format.html
+		                    format.xls
+							format.pdf {
+								pdf = ReportPdfModule.visual_report(@entity,@metric,@final_data,@metric_doc,@field)
+								        send_data pdf.render, filename:
+								        "explicit.pdf",
+								        type: "application/pdf"
+		                    								  }
+		                end
 
 
 

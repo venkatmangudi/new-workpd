@@ -64,7 +64,7 @@
                   <td><%= hospital_performa.month.month_name %></td>
                   <td><%= hospital_performa.year%></td>
                   <td><%= hospital_performa.attributes[@field] %></td>
-                  <% final_value.push({:y=>(performaone.year.to_s+"-"+(performaone.month_id.to_s.size>1 ? performaone.month_id.to_s : "0"+performaone.month_id.to_s)),:a=>hospital_performa.attributes[@field]}) %>
+                  <% final_value.push({:y=>(hospital_performa.year.to_s+"-"+(hospital_performa.month_id.to_s.size>1 ? hospital_performa.month_id.to_s : "0"+hospital_performa.month_id.to_s)),:a=>hospital_performa.attributes[@field]}) %>
 
 
                 </tr>
