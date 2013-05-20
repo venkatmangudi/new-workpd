@@ -32,7 +32,7 @@ def self.to_pdf(raw_array)
 
   data_array=[]
 
-  data_array << [human_attribute_name(:hospital_name),human_attribute_name(:beds),human_attribute_name(:block_id),human_attribute_name(:hospital_type_id),human_attribute_name(:institution_type_id),"Admin Location ?","Tribal Location ?","Latitude","Longitude",human_attribute_name(:phone_no),human_attribute_name(:fax_no)]
+  data_array << [human_attribute_name(:hospital_name),human_attribute_name(:beds),human_attribute_name(:block_id),human_attribute_name(:hospital_type_id),human_attribute_name(:institution_type_id),"Admin Location ?","Tribal Location ?",human_attribute_name(:phone_no),human_attribute_name(:fax_no)]
 
   t=Time.now
 
@@ -49,8 +49,6 @@ def self.to_pdf(raw_array)
             normal_array << hospital.institution_type.Institution_type
             normal_array << (hospital.IsAdministrativeLocation? ? 'Yes' : 'No')
             normal_array << (hospital.IsTribal? ? 'Yes' : 'No')
-            normal_array << hospital.latitude
-            normal_array << hospital.longitude
             normal_array << hospital.phone_no
             normal_array << hospital.fax_no
 
@@ -61,17 +59,19 @@ def self.to_pdf(raw_array)
 
   pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :landscape)
 
-  pdf.font_size=10
+  pdf.font_size=15
   pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
   pdf.move_down 10
 
   pdf.text "Hospitals"
 
+  pdf.font_size=12
+
   pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
 
   pdf.move_down 10
 
-  pdf.font_size=5
+  pdf.font_size=10
   pdf.table(data_array,:header=>true)
   pdf
 
