@@ -32,9 +32,9 @@ module ReportPdfModule
 
 			# data_array=data_array*40
 
-			pdf = Prawn::Document.new(:page_size => "A1", :page_layout => :landscape)
+			pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :landscape)
 
-			pdf.font_size=8
+			pdf.font_size=10
 			pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
 			pdf.move_down 10
 
@@ -42,9 +42,13 @@ module ReportPdfModule
 
 			pdf.text "Metric : "+metric
 
+			pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
+
 			pdf.move_down 10
 
+			pdf.font_size=5
 			pdf.table(data_array,:header=>true)
+
 			pdf
 
 		else
@@ -82,18 +86,21 @@ module ReportPdfModule
 
 			# data_array=data_array*40
 
-			pdf = Prawn::Document.new(:page_size => "A1", :page_layout => :landscape)
+			pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :landscape)
 
-			pdf.font_size=8
+			pdf.font_size=10
 			pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
 			pdf.move_down 10
 
 			pdf.text "Employee Performance Data"
 			pdf.text "Metric : "+metric_doc
+			pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
 
 			pdf.move_down 10
 
+			pdf.font_size=5
 			pdf.table(data_array,:header=>true)
+
 			pdf
 
 		end
@@ -135,9 +142,20 @@ module ReportPdfModule
 
 		       pdf.font_size=10
 		       pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
-		       pdf.move_down 10
-		       pdf.text metric
-		       pdf.move_down 10
+		       pdf.move_down 4
+
+		       pdf.font_size=20
+
+		       pdf.text "Trend Analysis Report : "+metric
+		       		pdf.move_down 4
+
+		           pdf.font_size=15
+
+		           pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
+
+		           pdf.move_down 8
+
+		           pdf.font_size=10
 
 		       pdf.table(data_array,:header=>true)
 		       pdf
@@ -168,9 +186,21 @@ module ReportPdfModule
 
 		       pdf.font_size=10
 		       pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
-		       pdf.move_down 10
-		       pdf.text metric_doc
-		       pdf.move_down 10
+		       pdf.move_down 4
+
+		       pdf.font_size=20
+
+		       pdf.text "Trend Analysis Report : "+metric_doc
+
+		       		pdf.move_down 4
+
+		           pdf.font_size=15
+
+		           pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
+
+		           pdf.move_down 8
+
+		           pdf.font_size=10
 
 		       pdf.table(data_array,:header=>true)
 		       pdf
