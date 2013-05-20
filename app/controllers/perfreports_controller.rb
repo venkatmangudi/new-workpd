@@ -30,24 +30,24 @@ class PerfreportsController < ApplicationController
 			index=["outdoor", "indoor", "minor_surgery", "major_surgery", "normal_delivery", "caesarion_delivery", "pathology", "image_scans", "ultra_sound", "ctmri", "ecg", "ecotmt", "blood_unit_transfused", "hemo", "mlc", "post_mortem", "remarks"].index(field)
 			@metric=["Outdoor","Indoor","Minor Surgeries","Major Surgeries","Normal Delivery","Cesarean Delivery","Pathology","X-Ray / Digital X-Ray / Dental X-Ray","Ultra Sound","CT Scan / MRI","ECG","ECO / EMT","Blood Units Transfused","Hemo-Dialysis","MLC","Postmortem","Remarks"][index]
 			if !state.nil?
-				@final_data=HospitalPerforma.joins(:hospital).where(:month_id=>month).where(:year=>year).order(field+" DESC")
+				@final_data=HospitalPerforma.joins(:hospital).accessible_by(current_ability).where(:month_id=>month).where(:year=>year).order(field+" DESC")
 			elsif !district.nil?
-				@final_data=HospitalPerforma.joins(:hospital).where(:month_id=>month).where(:year=>year).where(:hospitals=>{ :district_id => district}).order(field+" DESC")
+				@final_data=HospitalPerforma.joins(:hospital).accessible_by(current_ability).where(:month_id=>month).where(:year=>year).where(:hospitals=>{ :district_id => district}).order(field+" DESC")
 
 			elsif !division.nil?
-				@final_data=HospitalPerforma.joins(:hospital).where(:month_id=>month).where(:year=>year).where(:hospitals=>{ :division_id => division}).order(field+" DESC")
+				@final_data=HospitalPerforma.joins(:hospital).accessible_by(current_ability).where(:month_id=>month).where(:year=>year).where(:hospitals=>{ :division_id => division}).order(field+" DESC")
 			end
 		else
 			index_doc=["leave_taken", "patients_opd", "patients_admit", "patients_ref", "emer_calls", "emer_duty", "mlc_perf", "postmor_perf", "court_presence", "op_major", "op_minor", "op_caesarion", "lab_tests", "image_tests"].index(field)
 			@metric_doc=["Leaves Taken in the Month","No. of Patients Checked In OPD in the Month","No. of Patients Admitted","No. of Patients Referred to Other Hospitals","No. of Emergency Calls Attended","No. of Emergency Duties Performed","No. of MLC Performed","No. of Postmortem Done","No. of Days Present in Court for Medico Legal Cases","No. of Major Operations","No. of Minor Operations","No. of Cesarean Operations","Tests Conducted : Lab Tests","Tests Conducted : Sonography/X-Ray/CT Scan/MRI/Dental X-Ray/X-Ray"][index_doc]
 			if !state.nil?
-				@final_data=Performaone.joins(:employee).where(:month_id=>month).where(:year=>year).joins(:hospital).order(field+" DESC")
+				@final_data=Performaone.joins(:employee).accessible_by(current_ability).where(:month_id=>month).where(:year=>year).joins(:hospital).order(field+" DESC")
 
 			elsif !district.nil?
-				@final_data=Performaone.joins(:employee).where(:month_id=>month).where(:year=>year).joins(:hospital).where(:hospitals=>{ :district_id => district}).order(field+" DESC")
+				@final_data=Performaone.joins(:employee).accessible_by(current_ability).where(:month_id=>month).where(:year=>year).joins(:hospital).where(:hospitals=>{ :district_id => district}).order(field+" DESC")
 
 			elsif !division.nil?
-				@final_data=Performaone.joins(:employee).where(:month_id=>month).where(:year=>year).joins(:hospital).where(:hospitals=>{ :division_id => division}).order(field+" DESC")
+				@final_data=Performaone.joins(:employee).accessible_by(current_ability).where(:month_id=>month).where(:year=>year).joins(:hospital).where(:hospitals=>{ :division_id => division}).order(field+" DESC")
 			end
 
 		end
