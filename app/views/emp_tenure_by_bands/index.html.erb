@@ -26,11 +26,22 @@
   <%final_data = @emp_tenure_by_bands.group_by{|e| e.tenure.nil?  ? 0 : e.tenure[0..2].to_i}.sort%>
 
 
-<% final_data.each do |emp_tenure_by_band| %>
-  <tr>
-        <td><%= emp_tenure_by_band[1][0].tenure %></td>
-        <td><%= emp_tenure_by_band[1][0].number_of_employees %></td>
-  </tr>
+<% final_data.each do |i,emp_tenure_by_band| %>
+  <%if i==0%>
+    <tr>
+          <td><%= emp_tenure_by_band[0].tenure %></td>
+          <td><%= emp_tenure_by_band[0].number_of_employees %></td>
+    </tr>
+    <tr>
+          <td><%= emp_tenure_by_band[1].tenure %></td>
+          <td><%= emp_tenure_by_band[1].number_of_employees %></td>
+    </tr>
+  <%else%>
+    <tr>
+          <td><%= emp_tenure_by_band[0].tenure %></td>
+          <td><%= emp_tenure_by_band[0].number_of_employees %></td>
+    </tr>
+    <%end%>
 <% end %>
 </tbody>
 </table>

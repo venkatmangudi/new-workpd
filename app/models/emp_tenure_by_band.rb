@@ -6,7 +6,25 @@ class EmpTenureByBand < ActiveRecord::Base
     data_array=[]
     data_array << ["Tenure (Years)" ,"Number of Employees"]
     # size=[3000]*column_names.size
-    raw_array.each do |hospital|
+
+    final_data = raw_array.group_by{|e| e.tenure.nil?  ? 0 : e.tenure[0..2].to_i}.sort
+
+    new_data_array=[]
+
+    final_data.each do |i,f|
+        if(i==0)
+            new_data_array<<f[0]
+            new_data_array<<f[1]
+        else
+            new_data_array<<f[0]
+        end
+
+    end
+
+
+
+
+    new_data_array.each do |hospital|
       data_array << (hospital.attributes.values_at(*column_names).map { |e| e.to_s  }).reverse
     end
 
