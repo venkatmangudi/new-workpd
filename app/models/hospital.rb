@@ -59,20 +59,31 @@ def self.to_pdf(raw_array)
 
   pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :landscape)
 
-  pdf.font_size=15
-  pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
-  pdf.move_down 10
 
-  pdf.text "Hospitals"
+  pdf.repeat :all do
+        pdf.font_size=15
+          pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
+          pdf.move_down 10
 
-  pdf.font_size=12
+          pdf.text "Hospitals"
 
-  pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
+          pdf.font_size=12
 
-  pdf.move_down 10
+          pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
 
-  pdf.font_size=10
-  pdf.table(data_array,:header=>true)
+          pdf.move_down 10
+  end
+
+
+  pdf.bounding_box([pdf.bounds.left, pdf.bounds.top - 200], :width  => pdf.bounds.width, :height => pdf.bounds.height - 240) do
+      pdf.font_size=10
+      pdf.table(data_array,:header=>true)
+
+    end
+
+
+
+
   pdf
 
   # Prawn::Document.generate("explicit.pdf") do
