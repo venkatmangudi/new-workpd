@@ -5,7 +5,7 @@ class EmpGenViewsController < InheritedResources::Base
 				      format.pdf {
 						pdf = EmpGenView.to_pdf(@emp_gen_views)
 						        send_data pdf.render, filename:
-						        "explicit.pdf",
+						        "Doctors by Gender.pdf",
 						        type: "application/pdf"
 							  }
 				 end

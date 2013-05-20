@@ -20,7 +20,7 @@ gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem 'binding_of_caller'
 gem 'inherited_resources'
-gem 'prawn'
+gem 'prawn', '~> 1.0.0.rc2'
 #gem 'bootstrap-editable-rails'
 
 # gem 'pdfkit'

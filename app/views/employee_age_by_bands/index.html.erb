@@ -20,7 +20,15 @@
     </tr>
   </thead>
 <tbody id="employee_age_by_bands">
-<% @employee_age_by_bands.each do |employee_age_by_band| %>
+  <%@new_band=@employee_age_by_bands.group_by{|e| e.ageband[0].to_i}.sort%>
+  <%new_data_array=[]%>
+
+  <%@new_band.to_enum.with_index(1).each do |elem,i|%>
+      <% new_data_array << elem[1][0] %>
+  <%end%>
+  <% new_data_array << @new_band[0][1][1] %>
+  <% new_data_array << @new_band[0][1][2] %>
+<% new_data_array.each do |employee_age_by_band| %>
   <tr>
         <td><%= employee_age_by_band.ageband %></td>
         <td><%= employee_age_by_band.number_of_employees %></td>

@@ -72,11 +72,21 @@ def self.to_pdf(raw_array)
 
 	pdf.font_size=6
 	pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
-	pdf.move_down 10
+	pdf.move_down 8
+
+	pdf.font_size=10
 
 	pdf.text "Employee Performance Data"
 
+	pdf.move_down 4
+
+	pdf.font_size=8
+
+	pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
+
 	pdf.move_down 10
+
+	pdf.font_size=5
 
 	pdf.table(data_array,:header=>true)
 	pdf

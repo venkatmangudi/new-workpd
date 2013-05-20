@@ -28,7 +28,7 @@ class PerformaonesController < InheritedResources::Base
 					format.pdf {
 						pdf = Performaone.to_pdf(@performaones)
 						        send_data pdf.render, filename:
-						        "explicit.pdf",
+						        "Employee Performance Data.pdf",
 						        type: "application/pdf"
                     								  }
                 end

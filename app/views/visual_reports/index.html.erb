@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="accordion" id="accordion2">
-                  <div class="accordion-group">
+                  <div class="accordion-group" style="background-color: rgb(215, 235, 245);">
                     <div class="accordion-heading">
                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
                         HOSPITAL
@@ -13,12 +13,12 @@
                               <%=hidden_field_tag 'entity', '1'%>
                                 <%=select_tag "hospital", options_from_collection_for_select(@hospitals, "id", "hospital_name")%>
                                   <%=select_tag "field", options_for_select(@fields)%>
-                                    <%= submit_tag("Search") %>
+                                    <%= submit_tag("Search", :class=>"btn") %>
                                 <% end %>
                       </div>
                     </div>
                   </div>
-                  <div class="accordion-group">
+                  <div class="accordion-group" style="background-color: rgb(245, 231, 215);">
                     <div class="accordion-heading">
                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
                         DOCTOR
@@ -30,7 +30,7 @@
                               <%=hidden_field_tag 'entity', '2'%>
                                 <%=select_tag "employee", options_from_collection_for_select(@employees, "id", "emp_full_name")%>
                                   <%=select_tag "field", options_for_select(@fields_doc)%>
-                                    <%= submit_tag("Search") %>
+                                    <%= submit_tag("Search", :class=>"btn") %>
                                 <% end %>
                       </div>
                     </div>

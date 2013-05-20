@@ -1,42 +1,42 @@
 <div class="container">
 
-    <div class="accordion" id="accordion2">
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                          HOSPITAL
-                        </a>
-                      </div>
-                      <div id="collapseOne" class="accordion-body collapse" >
-                        <div class="accordion-inner">
-                          <%= form_tag("/visual_reports/generate_report", method: "get") do %>
-                                <%=hidden_field_tag 'entity', '1'%>
-                                  <%=select_tag "hospital", options_from_collection_for_select(@hospitals, "id", "hospital_name")%>
-                                    <%=select_tag "field", options_for_select(@fields)%>
-                                      <%= submit_tag("Search") %>
-                                  <% end %>
-                        </div>
+  <div class="accordion" id="accordion2">
+                  <div class="accordion-group" style="background-color: rgb(215, 235, 245);">
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                        HOSPITAL
+                      </a>
+                    </div>
+                    <div id="collapseOne" class="accordion-body collapse" >
+                      <div class="accordion-inner">
+                        <%= form_tag("/visual_reports/generate_report", method: "get") do %>
+                              <%=hidden_field_tag 'entity', '1'%>
+                                <%=select_tag "hospital", options_from_collection_for_select(@hospitals, "id", "hospital_name")%>
+                                  <%=select_tag "field", options_for_select(@fields)%>
+                                    <%= submit_tag("Search", :class=>"btn") %>
+                                <% end %>
                       </div>
                     </div>
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                          DOCTOR
-                        </a>
-                      </div>
-                      <div id="collapseTwo" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                          <%= form_tag("/visual_reports/generate_report", method: "get") do %>
-                                <%=hidden_field_tag 'entity', '2'%>
-                                  <%=select_tag "employee", options_from_collection_for_select(@employees, "id", "emp_full_name")%>
-                                    <%=select_tag "field", options_for_select(@fields_doc)%>
-                                      <%= submit_tag("Search") %>
-                                  <% end %>
-                        </div>
-                      </div>
-                    </div>
-
                   </div>
+                  <div class="accordion-group" style="background-color: rgb(245, 231, 215);">
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                        DOCTOR
+                      </a>
+                    </div>
+                    <div id="collapseTwo" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                        <%= form_tag("/visual_reports/generate_report", method: "get") do %>
+                              <%=hidden_field_tag 'entity', '2'%>
+                                <%=select_tag "employee", options_from_collection_for_select(@employees, "id", "emp_full_name")%>
+                                  <%=select_tag "field", options_for_select(@fields_doc)%>
+                                    <%= submit_tag("Search", :class=>"btn") %>
+                                <% end %>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
 
 
 
@@ -46,6 +46,12 @@
 
         <% if @entity == "1"%>
           <h1>Metric : <%=@metric%></h1>
+
+          <p> Download :
+          <%= link_to "XLS", visual_reports_generate_report_path(format: "xls" , :entity=> params[:entity] , :field=>params[:field], :hospital => params[:hospital], :employee => params[:employee]) , :class => 'btn btn-small btn-success' %>
+          <%= link_to "PDF", visual_reports_generate_report_path(format: "pdf" , :entity=> params[:entity] , :field=>params[:field], :hospital => params[:hospital], :employee => params[:employee]) , :class => 'btn btn-small btn-primary' %>
+          </p>
+
           <%final_metric=@metric%>
           <table class="table table-bordered" id="table1">
             <thead>
@@ -60,7 +66,7 @@
             <tbody>
               <% @final_data.each do |hospital_performa| %>
                 <tr>
-                  <td><%= hospital_performa.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
+                  <td><%= link_to hospital_performa.try(:hospital).hospital_name, hospital_path(hospital_performa.hospital) %></td>
                   <td><%= hospital_performa.month.month_name %></td>
                   <td><%= hospital_performa.year%></td>
                   <td><%= hospital_performa.attributes[@field] %></td>
@@ -74,6 +80,13 @@
         <%else%>
           <table class="table table-bordered" id="table1">
             <h1>Metric : <%=@metric_doc%></h1>
+            <p>
+              Download :
+
+            <%= link_to "XLS", visual_reports_generate_report_path(format: "xls" , :entity=> params[:entity] , :field=>params[:field], :hospital => params[:hospital], :employee => params[:employee]) , :class => 'btn btn-small btn-success' %>
+            <%= link_to "PDF", visual_reports_generate_report_path(format: "pdf" , :entity=> params[:entity] , :field=>params[:field], :hospital => params[:hospital], :employee => params[:employee]) , :class => 'btn btn-small btn-primary' %>
+            </p>
+
             <%final_metric=@metric_doc%>
             <thead>
               <tr>
@@ -91,9 +104,9 @@
             <tbody>
               <% @final_data.each do |performaone| %>
                 <tr>
-                  <td><%= performaone.employee.emp_full_name %></td>
+                  <td><%= link_to performaone.employee.emp_full_name, employee_path(performaone.employee) %></td>
                   <td><%= performaone.employee.emp_treasury_id %></td>
-                  <td><%= performaone.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
+                  <td><%= performaone.hospital.nil? ? "N/A" : (link_to performaone.hospital.hospital_name,hospital_path(performaone.hospital)) %></td>
                   <td><%= performaone.try(:month).try(:month_name) || "Not Entered" %></td>
                   <td><%= performaone.try(:year)|| "Not Entered" %></td>
                   <td><%= performaone.try(:designation).try(:Designation_English) || "Not Entered" %></td>

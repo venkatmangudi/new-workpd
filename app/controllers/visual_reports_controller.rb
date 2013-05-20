@@ -44,7 +44,7 @@ class VisualReportsController < ApplicationController
 							format.pdf {
 								pdf = ReportPdfModule.visual_report(@entity,@metric,@final_data,@metric_doc,@field)
 								        send_data pdf.render, filename:
-								        "explicit.pdf",
+								        "Trend Analysis "+(@metric || @metric_doc)+".pdf",
 								        type: "application/pdf"
 		                    								  }
 		                end

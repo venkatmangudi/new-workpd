@@ -12,7 +12,7 @@
 
 <table class="table table-bordered" id="hosp">
   <thead>
-    <tr>   
+    <tr>
       <th><%= model_class.human_attribute_name(:hospital_name) %></th>
       <th><%= model_class.human_attribute_name(:beds) %></th>
       <th><%= model_class.human_attribute_name(:block_id) %></th>
@@ -28,14 +28,14 @@
   </thead>
   <tbody>
     <% @hospitals.each do |hospital| %>
-      <tr> 
+      <tr>
         <td><%= link_to hospital.hospital_name,hospital_path(hospital) %></td>
         <td><%= hospital.beds %></td>
         <td><%= hospital.block.block_name %></td>
         <td><%= hospital.hospital_type.hospital_type %></td>
         <td><%= hospital.institution_type.Institution_type %></td>
         <td><%= hospital.IsAdministrativeLocation? ? 'Yes' : 'No' %></td>
-        <td><%= hospital.IsTribal? ? 'Yes' : 'No' %></td>        
+        <td><%= hospital.IsTribal? ? 'Yes' : 'No' %></td>
 	      <td><%= hospital.latitude %></td>
         <td><%= hospital.longitude %></td>
         <td><%= hospital.phone_no %></td>

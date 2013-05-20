@@ -1,9 +1,9 @@
 <div class="container">
 
   <div class="accordion" id="accordion2">
-                  <div class="accordion-group">
+                  <div class="accordion-group" style="background-color: rgb(215, 235, 245);">
                     <div class="accordion-heading">
-                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                      <a class="accordion-toggle  hosp" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
                         HOSPITAL : STATEWISE
                       </a>
                     </div>
@@ -13,15 +13,17 @@
                               <%=hidden_field_tag 'entity', '1'%>
                                 <%=select_tag "state", options_from_collection_for_select(@states, "id", "state_name")%>
                                   <%=select_tag "field", options_for_select(@fields)%>
-                                    <%= submit_tag("Search") %>
+                                  <%=select_month(Date.today)%>
+                                  <%=select_year(Date.today)%>
+                                    <%= submit_tag("Search",:class=>"btn") %>
                                 <% end %>
                       </div>
                     </div>
                   </div>
-                  <div class="accordion-group">
+                  <div class="accordion-group" style="background-color: rgb(215, 235, 245);">
                     <div class="accordion-heading">
-                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                        DISTRICTWISE
+                      <a class="accordion-toggle  hosp" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                        HOSPITAL : DISTRICTWISE
                       </a>
                     </div>
                     <div id="collapseTwo" class="accordion-body collapse">
@@ -30,15 +32,17 @@
                               <%=hidden_field_tag 'entity', '1'%>
                                 <%=select_tag "district", options_from_collection_for_select(@district, "id", "district_name")%>
                                   <%=select_tag "field", options_for_select(@fields)%>
-                                    <%= submit_tag("Search") %>
+                                  <%=select_month(Date.today)%>
+                                  <%=select_year(Date.today)%>
+                                    <%= submit_tag("Search",:class=>"btn") %>
                                 <% end %>
                       </div>
                     </div>
                   </div>
-                  <div class="accordion-group">
+                  <div class="accordion-group" style="background-color: rgb(215, 235, 245);">
                     <div class="accordion-heading">
-                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                        DIVISIONWISE
+                      <a class="accordion-toggle  hosp" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                        HOSPITASL : DIVISIONWISE
                       </a>
                     </div>
                     <div id="collapseThree" class="accordion-body collapse">
@@ -47,14 +51,16 @@
                               <%=hidden_field_tag 'entity', '1'%>
                                 <%=select_tag "division", options_from_collection_for_select(@division, "id", "division_name")%>
                                   <%=select_tag "field", options_for_select(@fields)%>
-                                    <%= submit_tag("Search") %>
+                                  <%=select_month(Date.today)%>
+                                  <%=select_year(Date.today)%>
+                                    <%= submit_tag("Search",:class=>"btn") %>
                                 <% end %>
                       </div>
                     </div>
                   </div>
-                  <div class="accordion-group">
+                  <div class="accordion-group" style="background-color: rgb(245, 231, 215);">
                     <div class="accordion-heading">
-                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
+                      <a class="accordion-toggle doc" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
                         DOCTOR : STATEWISE
                       </a>
                     </div>
@@ -64,14 +70,16 @@
                               <%=hidden_field_tag 'entity', '2'%>
                                 <%=select_tag "state", options_from_collection_for_select(@states, "id", "state_name")%>
                                   <%=select_tag "field", options_for_select(@fields_doc)%>
-                                    <%= submit_tag("Search") %>
+                                  <%=select_month(Date.today)%>
+                                  <%=select_year(Date.today)%>
+                                    <%= submit_tag("Search",:class=>"btn") %>
                                 <% end %>
                       </div>
                     </div>
                   </div>
-                  <div class="accordion-group">
+                  <div class="accordion-group" style="background-color: rgb(245, 231, 215);">
                     <div class="accordion-heading">
-                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive">
+                      <a class="accordion-toggle doc" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive">
                         DOCTOR : DISTRICTWISE
                       </a>
                     </div>
@@ -81,14 +89,16 @@
                               <%=hidden_field_tag 'entity', '2'%>
                                 <%=select_tag "district", options_from_collection_for_select(@district, "id", "district_name")%>
                                   <%=select_tag "field", options_for_select(@fields_doc)%>
-                                    <%= submit_tag("Search") %>
+                                  <%=select_month(Date.today)%>
+                                  <%=select_year(Date.today)%>
+                                    <%= submit_tag("Search",:class=>"btn") %>
                                 <% end %>
                       </div>
                     </div>
                   </div>
-                  <div class="accordion-group">
+                  <div class="accordion-group" style="background-color: rgb(245, 231, 215);">
                     <div class="accordion-heading">
-                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseSix">
+                      <a class="accordion-toggle doc" data-toggle="collapse" data-parent="#accordion2" href="#collapseSix">
                         DOCTOR : DIVISIONWISE
                       </a>
                     </div>
@@ -98,7 +108,9 @@
                               <%=hidden_field_tag 'entity', '2'%>
                                 <%=select_tag "division", options_from_collection_for_select(@division, "id", "division_name")%>
                                   <%=select_tag "field", options_for_select(@fields_doc)%>
-                                    <%= submit_tag("Search") %>
+                                  <%=select_month(Date.today)%>
+                                  <%=select_year(Date.today)%>
+                                    <%= submit_tag("Search",:class=>"btn") %>
                                 <% end %>
                       </div>
                     </div>

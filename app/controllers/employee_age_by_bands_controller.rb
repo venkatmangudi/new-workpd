@@ -6,7 +6,7 @@ class EmployeeAgeByBandsController < InheritedResources::Base
 				      format.pdf {
 							pdf = EmployeeAgeByBand.to_pdf(@employee_age_by_bands)
 							send_data pdf.render, filename:
-							"explicit.pdf",
+							"Employee Age by Band.pdf",
 							type: "application/pdf"
 						  }
 				 end

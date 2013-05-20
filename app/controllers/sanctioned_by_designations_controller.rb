@@ -5,7 +5,7 @@ class SanctionedByDesignationsController < InheritedResources::Base
 				      format.pdf {
 						pdf = SanctionedByDesignation.to_pdf(@sanctioned_by_designations)
 						        send_data pdf.render, filename:
-						        "explicit.pdf",
+						        "Sanctioned by Designation.pdf",
 						        type: "application/pdf"
 							  }
 				 end

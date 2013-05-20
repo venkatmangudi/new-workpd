@@ -4,7 +4,7 @@ class EmpGenView < ActiveRecord::Base
     def self.to_pdf(raw_array)
 
       data_array=[]
-      data_array << column_names
+      data_array << ["Gender" ,"Number of Employees"]
       # size=[3000]*column_names.size
       raw_array.each do |hospital|
         data_array << hospital.attributes.values_at(*column_names).map { |e| e.to_s  }
@@ -16,9 +16,21 @@ class EmpGenView < ActiveRecord::Base
 
       pdf.font_size=10
       pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
-      pdf.move_down 10
+      pdf.move_down 4
+
+      pdf.font_size=20
+
       pdf.text "Doctors by Gender"
-      pdf.move_down 10
+
+      pdf.move_down 4
+
+      pdf.font_size=15
+
+      pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
+
+      pdf.move_down 8
+
+      pdf.font_size=10
 
       pdf.table(data_array,:header=>true)
       pdf

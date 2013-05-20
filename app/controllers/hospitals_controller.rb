@@ -9,7 +9,7 @@ class HospitalsController < InheritedResources::Base
 				    format.pdf {
 						pdf = Hospital.to_pdf(@hospitals)
 				        send_data pdf.render, filename:
-				        "explicit.pdf",
+				        "hospitals.pdf",
 				        type: "application/pdf"
 				    }
                 end

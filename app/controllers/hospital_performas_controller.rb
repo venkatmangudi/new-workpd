@@ -26,7 +26,7 @@ class HospitalPerformasController < InheritedResources::Base
                     format.pdf {
                     	pdf = HospitalPerforma.to_pdf(@hospital_performas)
                     	        send_data pdf.render, filename:
-                    	        "explicit.pdf",
+                    	        "Hospital Performance Data.pdf",
                     	        type: "application/pdf"
 								  }
                 end

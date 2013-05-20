@@ -5,7 +5,7 @@ class EmpTenureByBandsController < InheritedResources::Base
 		      format.pdf {
 				pdf = EmpTenureByBand.to_pdf(@emp_tenure_by_bands)
 				        send_data pdf.render, filename:
-				        "explicit.pdf",
+				        "Employee Tenure by Band.pdf",
 				        type: "application/pdf"
 		      	}
 		 end

@@ -4,7 +4,7 @@ class EmpSpecViewsController < InheritedResources::Base
 			format.pdf {
 				pdf = EmpSpecView.to_pdf(@emp_spec_views)
 				        send_data pdf.render, filename:
-				        "explicit.pdf",
+				        "Doctors by Specialisations.pdf",
 				        type: "application/pdf"
 		      	}
 		 end
