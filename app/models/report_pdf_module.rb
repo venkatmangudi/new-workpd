@@ -43,20 +43,49 @@ module ReportPdfModule
 
 			pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :landscape)
 
-			pdf.font_size=10
-			pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
-			pdf.move_down 10
+			pdf.repeat :all do
 
-			pdf.text "Hospital Performance Data"
 
-			pdf.text "Metric : "+metric
+			        pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
+			        pdf.move_down 4
 
-			pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
+			        pdf.font_size=10
 
-			pdf.move_down 10
+			        pdf.text "Hospital Performance Data"
 
-			pdf.font_size=5
-			pdf.table(data_array,:header=>true)
+			        pdf.move_down 4
+
+			        pdf.font_size=8
+
+			        pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
+
+			        pdf.move_down 8
+
+			        pdf.font_size=5
+			end
+
+
+
+			pdf.bounding_box([pdf.bounds.left, pdf.bounds.top - 200], :width  => pdf.bounds.width, :height => pdf.bounds.height - 220) do
+			          pdf.font_size=8
+			          pdf.table(data_array,:header=>true) do |y|
+			             y.row(0).font_style = :bold
+			             y.row(0).style :background_color => 'a2a2a2'
+
+			           end
+
+			        end
+
+			# pdf.table(data_array,:header=>true)
+
+			string = "page <page> of <total>"
+			  # Green page numbers 1 to 7
+			  options = { :at => [pdf.bounds.right - 150, 0],
+			  :width => 150,
+			  :align => :right,
+			  :start_count_at => 1,
+			  :color => "000000" }
+			  pdf.number_pages string, options
 
 			pdf
 
@@ -73,7 +102,7 @@ module ReportPdfModule
 				 normal_array << performaone.try(:year)|| "Not Entered"
 				 normal_array << performaone.try(:designation).try(:Designation_English) || "Not Entered"
 				 normal_array << performaone.leave_taken
-				 normal_array << performaone.patients_opd.to_s+"/"+opd_min
+				 normal_array << performaone.patients_opd.to_s+"/"+opd_min.to_s
 				 normal_array << performaone.patients_admit
 				 normal_array << performaone.patients_ref
 				 normal_array << performaone.emer_calls
@@ -81,11 +110,11 @@ module ReportPdfModule
 				 normal_array << performaone.mlc_perf
 				 normal_array << performaone.postmor_perf
 				 normal_array << performaone.court_presence
-				 normal_array << performaone.op_major+"/"+maj_op_min
-				 normal_array << performaone.op_minor+"/"+minor_op_min
-				 normal_array << performaone.op_caesarion+"/"+cesarean_op_min
-				 normal_array << performaone.lab_tests+"/"+patho_min
-				 normal_array << performaone.image_tests+"/"+xray_min
+				 normal_array << performaone.op_major.to_s+"/"+maj_op_min.to_s
+				 normal_array << performaone.op_minor.to_s+"/"+minor_op_min.to_s
+				 normal_array << performaone.op_caesarion.to_s+"/"+cesarean_op_min.to_s
+				 normal_array << performaone.lab_tests.to_s+"/"+patho_min.to_s
+				 normal_array << performaone.image_tests.to_s+"/"+xray_min.to_s
 				 normal_array << performaone.equip
 				 normal_array << performaone.equipdetail
 				 normal_array << performaone.equipdefic
@@ -97,18 +126,49 @@ module ReportPdfModule
 
 			pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :landscape)
 
-			pdf.font_size=10
-			pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
-			pdf.move_down 10
+			pdf.repeat :all do
 
-			pdf.text "Employee Performance Data"
-			pdf.text "Metric : "+metric_doc
-			pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
 
-			pdf.move_down 10
+			        pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
+			        pdf.move_down 4
 
-			pdf.font_size=5
-			pdf.table(data_array,:header=>true)
+			        pdf.font_size=10
+
+			        pdf.text "Employee Performance Data"
+
+			        pdf.move_down 4
+
+			        pdf.font_size=8
+
+			        pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
+
+			        pdf.move_down 8
+
+			        pdf.font_size=5
+			end
+
+
+
+			pdf.bounding_box([pdf.bounds.left, pdf.bounds.top - 200], :width  => pdf.bounds.width, :height => pdf.bounds.height - 220) do
+			          pdf.font_size=6
+			          pdf.table(data_array,:header=>true) do |y|
+			             y.row(0).font_style = :bold
+			             y.row(0).style :background_color => 'a2a2a2'
+
+			           end
+
+			        end
+
+			# pdf.table(data_array,:header=>true)
+
+			string = "page <page> of <total>"
+			  # Green page numbers 1 to 7
+			  options = { :at => [pdf.bounds.right - 150, 0],
+			  :width => 150,
+			  :align => :right,
+			  :start_count_at => 1,
+			  :color => "000000" }
+			  pdf.number_pages string, options
 
 			pdf
 
@@ -149,25 +209,55 @@ module ReportPdfModule
 
 		       pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :portrait)
 
-		       pdf.font_size=10
-		       pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
-		       pdf.move_down 4
 
-		       pdf.font_size=20
 
-		       pdf.text "Trend Analysis Report : "+metric
-		       		pdf.move_down 4
 
-		           pdf.font_size=15
 
-		           pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
+		       pdf.repeat :all do
 
-		           pdf.move_down 8
 
-		           pdf.font_size=10
+		               pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
+		               pdf.move_down 4
 
-		       pdf.table(data_array,:header=>true)
-		       pdf
+		               pdf.font_size=20
+
+		               pdf.text "Trend Analysis Report : "+metric
+
+		               pdf.move_down 4
+
+		               pdf.font_size=15
+
+		               pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
+
+		               pdf.move_down 8
+
+		               pdf.font_size=10
+		       end
+
+
+
+		       pdf.bounding_box([pdf.bounds.left, pdf.bounds.top - 200], :width  => pdf.bounds.width, :height => pdf.bounds.height - 220) do
+		                 pdf.font_size=10
+		                 pdf.table(data_array,:header=>true) do |y|
+		                    y.row(0).font_style = :bold
+		                    y.row(0).style :background_color => 'a2a2a2'
+
+		                  end
+
+		               end
+
+		       # pdf.table(data_array,:header=>true)
+
+		       string = "page <page> of <total>"
+		         # Green page numbers 1 to 7
+		         options = { :at => [pdf.bounds.right - 150, 0],
+		         :width => 150,
+		         :align => :right,
+		         :start_count_at => 1,
+		         :color => "000000" }
+		         pdf.number_pages string, options
+
+		         pdf
 
 		else
 
@@ -193,26 +283,53 @@ module ReportPdfModule
 
 		       pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :portrait)
 
-		       pdf.font_size=10
-		       pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
-		       pdf.move_down 4
 
-		       pdf.font_size=20
+		       pdf.repeat :all do
 
-		       pdf.text "Trend Analysis Report : "+metric_doc
 
-		       		pdf.move_down 4
+		               pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
+		               pdf.move_down 4
 
-		           pdf.font_size=15
+		               pdf.font_size=20
 
-		           pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
+		               pdf.text "Trend Analysis Report : "+metric_doc
 
-		           pdf.move_down 8
+		               pdf.move_down 4
 
-		           pdf.font_size=10
+		               pdf.font_size=15
 
-		       pdf.table(data_array,:header=>true)
-		       pdf
+		               pdf.text "Report Date: "+Date.today.strftime("%d-%m-%Y")
+
+		               pdf.move_down 8
+
+		               pdf.font_size=10
+		       end
+
+
+
+		       pdf.bounding_box([pdf.bounds.left, pdf.bounds.top - 200], :width  => pdf.bounds.width, :height => pdf.bounds.height - 220) do
+		                 pdf.font_size=10
+		                 pdf.table(data_array,:header=>true) do |y|
+		                    y.row(0).font_style = :bold
+		                    y.row(0).style :background_color => 'a2a2a2'
+
+		                  end
+
+		               end
+
+		       # pdf.table(data_array,:header=>true)
+
+		       string = "page <page> of <total>"
+		         # Green page numbers 1 to 7
+		         options = { :at => [pdf.bounds.right - 150, 0],
+		         :width => 150,
+		         :align => :right,
+		         :start_count_at => 1,
+		         :color => "000000" }
+		         pdf.number_pages string, options
+
+		         pdf
+
 		end
 
 		pdf

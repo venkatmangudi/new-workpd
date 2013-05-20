@@ -23,7 +23,7 @@ class EmployeeAgeByBand < ActiveRecord::Base
 
     # data_array=data_array*40
 
-    pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :landscape)
+    pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :portrait)
 
 
     pdf.image "#{Rails.root}/app/assets/images/mp_logo.png"
@@ -43,7 +43,25 @@ class EmployeeAgeByBand < ActiveRecord::Base
 
     pdf.font_size=10
 
-    pdf.table(data_array,:header=>true)
+    pdf.bounding_box([pdf.bounds.left, pdf.bounds.top - 200], :width  => pdf.bounds.width, :height => pdf.bounds.height - 220) do
+              pdf.font_size=10
+              pdf.table(data_array,:header=>true) do |y|
+                 y.row(0).font_style = :bold
+                 y.row(0).style :background_color => 'a2a2a2'
+
+               end
+
+            end
+
+    string = "page <page> of <total>"
+      # Green page numbers 1 to 7
+      options = { :at => [pdf.bounds.right - 150, 0],
+      :width => 150,
+      :align => :right,
+      :start_count_at => 1,
+      :color => "000000" }
+      pdf.number_pages string, options
+
     pdf
 
     # Prawn::Document.generate("explicit.pdf") do
