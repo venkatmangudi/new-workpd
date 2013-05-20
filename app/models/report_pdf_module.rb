@@ -1,6 +1,15 @@
 module ReportPdfModule
 	def self.perf_pdf(raw_array,entity,metric,metric_doc)
 
+		@performance_targets = PerformanceTarget.all
+		opd_min=@performance_targets.select{|h| h.task=="OPD" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]
+		maj_op_min=@performance_targets.select{|h| h.task=="MAJOR SURGERY" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]
+		minor_op_min=@performance_targets.select{|h| h.task=="MINOR SURGERY" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]
+		cesarean_op_min=@performance_targets.select{|h| h.task=="CEASARION" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]
+		sono_min=@performance_targets.select{|h| h.task=="SONOGRAPHY" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]
+		patho_min=@performance_targets.select{|h| h.task=="PATHOLOGY TEST" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]
+		xray_min=@performance_targets.select{|h| h.task=="XRAY" && h.entity="EMPLOYEE" && h.employee_cadre_id == 1}.map(&:minimum_monthly_work)[0]
+
 		data_array=[]
 
 		if entity == "1"
@@ -10,7 +19,7 @@ module ReportPdfModule
 			raw_array.each do |hospital_performa|
 				normal_array=[]
 				normal_array << hospital_performa.hospital.hospital_name
-				normal_array << hospital_performa.outdoor
+				normal_array << hospital_performa.outdoor.to_s
 				normal_array << hospital_performa.indoor
 				normal_array << hospital_performa.minor_surgery
 				normal_array << hospital_performa.major_surgery
@@ -64,7 +73,7 @@ module ReportPdfModule
 				 normal_array << performaone.try(:year)|| "Not Entered"
 				 normal_array << performaone.try(:designation).try(:Designation_English) || "Not Entered"
 				 normal_array << performaone.leave_taken
-				 normal_array << performaone.patients_opd
+				 normal_array << performaone.patients_opd.to_s+"/"+opd_min
 				 normal_array << performaone.patients_admit
 				 normal_array << performaone.patients_ref
 				 normal_array << performaone.emer_calls
@@ -72,11 +81,11 @@ module ReportPdfModule
 				 normal_array << performaone.mlc_perf
 				 normal_array << performaone.postmor_perf
 				 normal_array << performaone.court_presence
-				 normal_array << performaone.op_major
-				 normal_array << performaone.op_minor
-				 normal_array << performaone.op_caesarion
-				 normal_array << performaone.lab_tests
-				 normal_array << performaone.image_tests
+				 normal_array << performaone.op_major+"/"+maj_op_min
+				 normal_array << performaone.op_minor+"/"+minor_op_min
+				 normal_array << performaone.op_caesarion+"/"+cesarean_op_min
+				 normal_array << performaone.lab_tests+"/"+patho_min
+				 normal_array << performaone.image_tests+"/"+xray_min
 				 normal_array << performaone.equip
 				 normal_array << performaone.equipdetail
 				 normal_array << performaone.equipdefic
