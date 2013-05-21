@@ -217,17 +217,20 @@
 
 
 
-<%if can? :create,SanctionedPost%>
+
 
          <li class="dropdown">
                 <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Hospitals <b class="caret"></b></a>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+
                     <li><%= link_to "Hospital List", hospitals_path %></li>
+                    <%if can? :create,SanctionedPost%>
                   <li><%= link_to "Sanctioned Posts", sanctioned_posts_path %></li>
                         <li><%= link_to "Additional Charges", additional_charges_path %></li>
+                        <%end%>
        </ul>
       </li>
-      <%end%>
+
 
          <li class="dropdown">
                 <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Work Performance <b class="caret"></b></a>
