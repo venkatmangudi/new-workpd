@@ -6,9 +6,18 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: bhopal_demo 
+  database: bhopal_demo
   pool: 5
   username: root
   password: root
   host: localhost
+
+production:
+    adapter: mysql2
+    encoding: utf8
+    database: bhopal_demo
+    pool: 5
+    username: root
+    password: root
+    host: localhost
 #  socket: /var/run/mysqld/mysqld.sock
