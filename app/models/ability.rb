@@ -11,8 +11,14 @@ class Ability
         cannot :destroy, :all
         can :read, :all
       elsif user.role.role_name == "district_head"
+
+        cannot [:manage,:read], SanctionedPost
+
+        cannot [:manage,:read], [AdditionalCharge,BloodGroup,State,MartialStat]
+
         can [:manage,:read], Employee, :hospital => {:district_id => user.district_id}
-        can :new, Employee
+        cannot [:new,:create], Employee
+        # can :new, Employee
 
         can [:manage,:read], Hospital, :district_id => user.district_id
         can :new, Hospital
@@ -21,6 +27,7 @@ class Ability
         can :new, Performaone
 
         can [:manage,:read], HospitalPerforma, :hospital=>{:district_id => user.district_id}
+
         can :new, HospitalPerforma
 
         can [:manage,:read], EmployeeSanctionWorking, :hospital=>{:district_id => user.district_id}

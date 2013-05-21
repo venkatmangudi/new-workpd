@@ -138,16 +138,19 @@
                                           <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Employees <b class="caret"></b></a>
                                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                                                   <li><%= link_to "View Employees", employees_path %></li>
+                                                  <% if can? :create, Employee %>
                                                     <li><a href="/employees/new" data-method="get">Add Employee</a></li>
                                 <li class="divider"></li>
                                 <li><%= link_to "Blood Groups", blood_groups_path %></li>
                                 <li><%= link_to "Marital Statuses", martial_stats_path %></li>
                                 <li><%= link_to "Religions", religions_path %></li>
                                 <li><%= link_to "Castes", castes_path %></li>
+                                                <%end%>
                                               <!-- <li class="divider"></li>
                                               <li><a tabindex="-1" href="#">Separated link</a></li> -->
                                             </ul>
                                         </li>
+                                        <% if can? :create,Employee %>
                                         <li class="dropdown">
                                                         <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Hierarchies <b class="caret"></b></a>
                                                           <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
@@ -202,16 +205,19 @@
 
 
 
+                                                              <!-- <li class="divider"></li>
+                                                                                  <li><a tabindex="-1" href="#">Separated link</a></li> -->
+                                                                                </ul>
+                                                                            </li>
+
+<%end%>
 
 <% end %>
 
-<!-- <li class="divider"></li>
-                    <li><a tabindex="-1" href="#">Separated link</a></li> -->
-                  </ul>
-              </li>
 
 
 
+<%if can? :create,SanctionedPost%>
 
          <li class="dropdown">
                 <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Hospitals <b class="caret"></b></a>
@@ -221,6 +227,7 @@
                         <li><%= link_to "Additional Charges", additional_charges_path %></li>
        </ul>
       </li>
+      <%end%>
 
          <li class="dropdown">
                 <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Work Performance <b class="caret"></b></a>
