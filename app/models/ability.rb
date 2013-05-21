@@ -14,7 +14,7 @@ class Ability
 
         cannot [:manage,:read], SanctionedPost
 
-        cannot [:manage,:read], [AdditionalCharge]
+        cannot [:manage,:read], AdditionalCharge
 
         can [:manage,:read], Employee, :hospital => {:district_id => user.district_id}
         cannot [:new,:create], Employee
