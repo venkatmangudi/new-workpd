@@ -13,7 +13,7 @@ Beauty::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  config.middleware.use Rack::SslEnforcer, :https_port => 3000
+  # config.middleware.use Rack::SslEnforcer, :https_port => 3000
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
